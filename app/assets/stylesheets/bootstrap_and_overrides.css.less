@@ -1,0 +1,99 @@
+@import "twitter/bootstrap/bootstrap";
+
+// Set the correct sprite paths
+@iconSpritePath: image-url("twitter/bootstrap/glyphicons-halflings.png");
+@iconWhiteSpritePath: image-url("twitter/bootstrap/glyphicons-halflings-white.png");
+
+// Set the Font Awesome (Font Awesome is default. You can disable by commenting below lines)
+@fontAwesomeEotPath: font-url("fontawesome-webfont.eot");
+@fontAwesomeEotPath_iefix: font-url("fontawesome-webfont.eot?#iefix");
+@fontAwesomeWoffPath: font-url("fontawesome-webfont.woff");
+@fontAwesomeTtfPath: font-url("fontawesome-webfont.ttf");
+@fontAwesomeSvgPath: font-url("fontawesome-webfont.svg#fontawesomeregular");
+
+// Font Awesome
+@import "fontawesome/font-awesome";
+
+// Glyphicons
+//@import "twitter/bootstrap/glyphicons.less";
+
+// Your custom LESS stylesheets goes here
+//
+// Since bootstrap was imported above you have access to its mixins which
+// you may use and inherit here
+//
+// If you'd like to override bootstrap's own variables, you can do so here as well
+// See http://twitter.github.com/bootstrap/customize.html#variables for their names and documentation
+//
+// Example:
+// @link-color: #ff0000;
+
+@navbar-inverse-bg: #4E5584;
+@navbar-inverse-color: #ffffff;
+@navbar-inverse-link-color: darken(@navbar-inverse-color, 5%);
+
+@component-active-bg: lighten(@navbar-inverse-bg, 3%);
+
+.navbar-brand {
+  font-weight: bold;
+}
+
+.list-group-item {
+  //box-shadow: 0 0 30px 0px #888;
+  //margin-bottom: 5px;
+  padding-right: 10px;
+  span.label {
+    float: right;
+  }
+  h4 {
+    font-size: 16px;
+  }
+  .title {
+    .text-muted;
+    font-size: smaller;
+  }
+  .progress {
+    width: 65%;
+    margin-bottom: 14px;
+    border-radius: 0;
+    &.progress-xs {
+      height: 4px;
+    }
+  }
+  ul {
+    padding-left: 10px;
+  }
+  li.synonym {
+    font-size: 10px;
+    list-style-type: none;
+  }
+}
+
+.modal-body {
+  padding: 0;
+}
+
+.modal-header {
+  .bg-primary;
+  border-radius: 5px 5px 0 0;
+  color: white;
+}
+
+dl {
+  margin-bottom: 0;
+}
+
+
+table {
+  td, th {
+    border-top: none !important;
+  }
+  th {
+    width: 20%;
+  }
+  ul {
+    list-style-type: none;
+    padding-left: 0;
+  }
+}
+
