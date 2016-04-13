@@ -4,10 +4,10 @@ one:
   word_name: MyString
   description: MyString
   syntactical_category: MyText
-  semantical-categories: MyText
+  semantical_categories: MyText
 
 two:
   word_name: MyString
   description: MyString
   syntactical_category: MyText
-  semantical-categories: MyText
+  semantical_categories: MyText
