@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  word_name: MyString
+  description: MyString
+  syntactical_category: MyText
+  semantical-categories: MyText
+
+two:
+  word_name: MyString
+  description: MyString
+  syntactical_category: MyText
+  semantical-categories: MyText
