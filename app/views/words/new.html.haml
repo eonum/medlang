@@ -6,6 +6,9 @@
     = w.label 'Description'
     = w.text_area :description
   %br
+    = w.label "Syntacitacl Category"
     = w.text_field :syntactical_category
+  %br
+    = w.label "Semincal Category"
     = w.select :semantical_categories, ['etiology','allergology','anatomy']
     = w.submit
