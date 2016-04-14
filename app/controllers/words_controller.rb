@@ -9,17 +9,14 @@ class WordsController < ApplicationController
   end
 
   def new
-    # very simple code to create an empty post and send the user
-    # to the New view for it (new.html.erb), which will have a
-    # form for creating the post
+   @word = Word.new
   end
 
   def create
-    @word = Word.new(params[:article])
+    @word = Word.params()
 
     @word.save
-    flash[:success] = "Word successfully saved!"
-    redirect_to @word
+    redirect_to words_path
   end
 
   def edit
