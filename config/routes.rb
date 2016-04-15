@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
 
+  resources :words
   scope '/:locale', :locale => /de|fr|it|en/, :format => /json|html/ do
-    resources :words
   end
-  root :to => 'words#index'
+
+  root :to => 'infos#home'
 end
