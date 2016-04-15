@@ -31,8 +31,12 @@ class WordsController < ApplicationController
   end
 
   def destroy
-    # very simple code to find the post we're referring to and
-    # destroy it.  Once that's done, redirect us to somewhere fun.
+    @word = Word.find(params[:id])
+    @word.destroy
+
+    flash.notice="Word '#{@word.word_name}' was deleted"
+
+    redirect_to words_path
   end
 
   def word_params
