@@ -13,7 +13,7 @@ class WordsController < ApplicationController
   end
 
   def create
-    @word = Word.params()
+    @word = Word.new(word_params)
 
     @word.save
     redirect_to words_path
@@ -33,5 +33,10 @@ class WordsController < ApplicationController
   def destroy
     # very simple code to find the post we're referring to and
     # destroy it.  Once that's done, redirect us to somewhere fun.
+  end
+
+  def word_params
+    allow = [:word_name, :descripton, :syntactical_category, :semantical_categories]
+    params.require(:word).permit(allow)
   end
 end

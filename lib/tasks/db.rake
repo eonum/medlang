@@ -1,4 +1,3 @@
-
 namespace :db do
 
   task all: :environment do

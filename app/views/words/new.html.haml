@@ -1,0 +1,14 @@
+%h2 New word
+=form_for @word do |w|
+  = w.label 'Wort'
+  = w.text_field :word_name
+  %br
+    = w.label 'Description'
+    = w.text_area :description
+  %br
+    = w.label "Syntacitacl Category"
+    = w.text_field :syntactical_category
+  %br
+    = w.label "Semincal Category"
+    = w.select :semantical_categories, ['etiology','allergology','anatomy']
+    = w.submit
