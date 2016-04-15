@@ -2,17 +2,17 @@
 =form_for @word do |w|
   = w.label 'Wort'
   %br
-  = w.text_field :word_name
+  = w.text_field :name_de
   %br
     = w.label 'Description'
     %br
-    = w.text_area :description
+    = w.text_area :description_de
   %br
     = w.label "Syntacitacl Category"
     %br
-    = w.text_field :syntactical_category
+    = w.text_field :syntactical_category_de
   %br
     = w.label "Semincal Category"
     %br
-    = w.select :semantical_categories, ['etiology','allergology','anatomy']
+    = w.select :semantical_categories_de, ['etiology','allergology','anatomy']
     = w.submit
