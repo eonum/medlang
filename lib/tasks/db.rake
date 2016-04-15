@@ -1,4 +1,3 @@
-require_relative 'seed_helpers.rb'
 
 namespace :db do
 
