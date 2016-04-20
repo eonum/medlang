@@ -1,0 +1,15 @@
+%h2 New word
+=form_for @category do |c|
+  = c.label 'Category'
+  %br
+  = c.text_field :name_de
+  %br
+    = c.label 'Description'
+    %br
+    = c.text_area :description_de
+  %br
+    = c.label "Type"
+    %br
+    = c.text_field :type_de
+  %br
+    = c.submit
