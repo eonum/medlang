@@ -1,0 +1,18 @@
+%h1 Overview Categories
+.table-responsive
+  %table.table
+    %thead
+      %tr
+        %th Name
+        %th Description
+        %th Type
+    %tbody
+      -for c in @category
+        %tr
+          %td
+            = c.name_de
+          %td
+            = c.description_de
+          %td
+            = c.type_de
+
