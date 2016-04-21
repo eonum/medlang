@@ -12,7 +12,13 @@
     %br
     = w.text_field :syntactical_category_de
   %br
-    = w.label "Semincal Category"
-    %br
-    = w.select :semantical_categories_de, ['etiology','allergology','anatomy']
+    = w.label "Semantical Categories"
+  %br
+    .form-group
+      - categories_array = Category.all.map{ |category| category.name_de}
+      = w.select(:semantical_categories_de, options_for_select(categories_array),{}, {:class => 'form-control'})
+  %br
     = w.submit
+
+
+
