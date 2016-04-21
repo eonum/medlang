@@ -33,9 +33,7 @@ class WordsController < ApplicationController
   def destroy
     @word = Word.find(params[:id])
     @word.destroy
-
-    flash.notice="Word '#{@word.word_name}' was deleted"
-
+    flash.notice= "Word #{@word.name_de} was deleted"
     redirect_to words_path
   end
 
