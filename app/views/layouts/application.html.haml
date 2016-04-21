@@ -31,11 +31,15 @@
           %button.btn.btn-default{:type => "submit"} Submit
         %ul.nav.navbar-nav.navbar-right
           %li.active
-            =link_to content_tag(:span, ' Library', :class => 'glyphicon glyphicon-book', :aria => {:hidden => "true"}), words_path
+            =link_to content_tag(:span, ' Category Library', :class => 'glyphicon glyphicon-book', :aria => {:hidden => "true"}), categories_path
+          %li.active
+            =link_to content_tag(:span, ' New Category', :class => 'glyphicon glyphicon-plus'), new_category_path
+          %li.active
+            =link_to content_tag(:span, ' Card Library', :class => 'glyphicon glyphicon-book', :aria => {:hidden => "true"}), words_path
           %li.active
             =link_to content_tag(:span, ' New Card', :class => 'glyphicon glyphicon-plus'), new_word_path
           %li.active
-            %a{:gref => "#"} Login
+            =link_to content_tag(:span, ' Login', :class => 'glyphicon glyphicon-log-in'), root_url
           -#%li.dropdown
             %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
               Dropdown
