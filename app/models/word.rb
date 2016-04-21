@@ -1,7 +1,7 @@
 class Word
   include Mongoid::Document
 
-  #has_many :categories
+  has_many :categories
 
   field :name_de, type: String
   field :name_en, type: String
