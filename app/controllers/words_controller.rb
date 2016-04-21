@@ -40,7 +40,7 @@ class WordsController < ApplicationController
   end
 
   def word_params
-    allow = [:word_name, :descripton, :syntactical_category, :semantical_categories]
+    allow = [:name_de, :description_de, :syntactical_category_de, :semantical_categories_de]
     params.require(:word).permit(allow)
   end
 end
