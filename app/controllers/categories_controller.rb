@@ -23,10 +23,14 @@ class CategoriesController < ApplicationController
   end
 
   def update
-    # code to figure out which post we're trying to update, then
-    # actually update the attributes of that post.  Once that's
-    # done, redirect us to somewhere like the Show page for that
-    # post
+    @category = Category.find(params[:id])
+
+    if @category.update_attributes(category_params)
+      flash[:notice] = 'successfully updated!'
+      redirect_to categories_path
+    else
+      render :action => 'edit'
+    end
   end
 
   def destroy
