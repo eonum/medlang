@@ -24,10 +24,14 @@ class WordsController < ApplicationController
   end
 
   def update
-    # code to figure out which post we're trying to update, then
-    # actually update the attributes of that post.  Once that's
-    # done, redirect us to somewhere like the Show page for that
-    # post
+    @word = Word.find(params[:id])
+
+    if @word.update_attributes(word_params)
+      flash[:notice] = 'successfully updated!'
+      redirect_to words_path
+    else
+      render :action => 'edit'
+    end
   end
 
   def destroy

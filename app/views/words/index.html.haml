@@ -22,5 +22,7 @@
             .btn.btn-default.btn-xs
               = link_to "Show", word_path(w), :method => :get
             .btn.btn-default.btn-xs
+              =link_to 'Edit', edit_word_path(w)
+            .btn.btn-default.btn-xs
               = link_to "delete", w, method: :delete, data: { confirm: "You sure?" }
 
