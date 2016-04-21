@@ -31,12 +31,12 @@
           %button.btn.btn-default{:type => "submit"} Submit
         %ul.nav.navbar-nav.navbar-right
           %li.active
-            =link_to 'Library', words_path
+            =link_to content_tag(:span, ' Library', :class => 'glyphicon glyphicon-book', :aria => {:hidden => "true"}), words_path
           %li.active
-            =link_to 'New flash card', new_word_path
+            =link_to content_tag(:span, ' New Card', :class => 'glyphicon glyphicon-plus'), new_word_path
           %li.active
             %a{:gref => "#"} Login
-          %li.dropdown
+          -#%li.dropdown
             %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
               Dropdown
               %span.caret
