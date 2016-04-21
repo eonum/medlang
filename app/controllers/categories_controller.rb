@@ -34,8 +34,9 @@ class CategoriesController < ApplicationController
   end
 
   def destroy
-    # very simple code to find the post we're referring to and
-    # destroy it.  Once that's done, redirect us to somewhere fun.
+    Category.find(params[:id]).destroy
+    flash[:success] = "User deleted"
+    redirect_to categories_path
   end
 
   def category_params

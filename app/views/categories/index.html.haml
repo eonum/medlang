@@ -16,4 +16,7 @@
           %td
             = c.type_de
           %td
+            
             =link_to 'Edit', edit_category_path(c)
+          %td
+            = link_to "delete", c, method: :delete, data: { confirm: "You sure?" }
