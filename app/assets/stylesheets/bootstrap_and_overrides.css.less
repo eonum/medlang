@@ -28,11 +28,41 @@
 // Example:
 // @link-color: #ff0000;
 
+html {  }
+
+/* Body
+-------------------------------------------------- */
+
+body {
+  height: 100%;
+  background-color: white;
+}
+
+
+
+/* Grid system
+-------------------------------------------------- */
+.spacer {
+  height: 20px; /* define margin as you see fit */
+  background-color: #319ab9;
+}
+
+
+
+
+
+/* Navbar
+-------------------------------------------------- */
+
 @navbar-inverse-bg: #4E5584;
 @navbar-inverse-color: #ffffff;
 @navbar-inverse-link-color: darken(@navbar-inverse-color, 5%);
 
 @component-active-bg: lighten(@navbar-inverse-bg, 3%);
+
+.navbar-default{
+  background-color: #21687d;
+}
 
 .navbar-brand {
   font-weight: bold;
@@ -100,12 +130,6 @@ table {
 /* Sticky footer styles
 -------------------------------------------------- */
 
-html,
-body {
-  height: 100%;
-  /* The html and body elements cannot have any padding or margin. */
-}
-
 /* Wrapper for page content to push down footer */
 #wrap {
   min-height: 100%;
@@ -121,7 +145,7 @@ body {
   height: auto;
 }
 .footer {
-  background-color: #4db2d0;
+  background-color: #21687d;
 }
 .footer {
   text-align: center;
@@ -136,7 +160,6 @@ body {
     padding-right: 20px;
   }
 }
-
 
 /* This is necessary to correctly display the Glyphicons icons
 -------------------------------------------------- */
