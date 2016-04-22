@@ -19,17 +19,17 @@
       .navbar-header
         %button.navbar-toggle.collapsed{"aria-expanded" => "false", "data-target" => "#bs-example-navbar-collapse-1", "data-toggle" => "collapse", :type => "button"}
           %span.sr-only Toggle navigation
+          %span.icon-bar Hello
           %span.icon-bar
           %span.icon-bar
-          %span.icon-bar
-        =link_to 'Home', root_url
       / Collect the nav links, forms, and other content for toggling
       #bs-example-navbar-collapse-1.collapse.navbar-collapse
-        %form.navbar-form.navbar-left{:role => "search"}
-          .form-group
+        %form.navbar-form.navbar-left.no-padding{:role => "search"}
+          =link_to content_tag(:span,' Home', :class => 'glyphicon glyphicon-home active', :aria => {:hidden => "true"}), root_url
+          -#.form-group
             %input.form-control{:placeholder => "Suchen+", :type => "text"}/
-          %button.btn.btn-default{:type => "submit"} Submit
-        %ul.nav.navbar-nav.navbar-right
+            %button.btn.btn-default{:type => "submit"} Submit
+        %ul.nav.navbar-nav.navbar-right.no-padding
           %li.active
             =link_to content_tag(:span, ' Category Library', :class => 'glyphicon glyphicon-book', :aria => {:hidden => "true"}), categories_path
           %li.active
