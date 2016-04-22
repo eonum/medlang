@@ -58,9 +58,13 @@
     / Begin page content
     .container
       = yield
+
+    / Footer content
     #push
     .footer.navbar-fixed-bottom
-      .container
+      .container-fluid
+        .row.spacer
+          .col-md-12
         .row
           .col-md-6.col-md-offset-3
             %p.text-center
