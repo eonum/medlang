@@ -1,28 +1,47 @@
 %h1 Overview Flash Cards
-.table-responsive
-  %table.table
-    %thead
-      %tr
-        %th Name
-        %th Description
-        %th SynCat
-        %th SemCat
-    %tbody
+.row
+  .col-lg-12
+    .table-responsive
+      %table.table
+        %thead
+          %tr
+            %th Name
+            %th Description
+            %th SynCat
+            %th SemCat
+        %tbody
+          -for w in @word
+            %tr
+              %td
+                = w.name_de
+              %td
+                = w.description_de
+              %td
+                = w.syntactical_category_de
+              %td
+                = w.semantical_categories_de
+              %td
+                .btn.btn-default.btn-xs
+                  = link_to "Show", word_path(w), :method => :get
+                .btn.btn-default.btn-xs
+                  =link_to 'Edit', edit_word_path(w)
+                .btn.btn-default.btn-xs
+                  = link_to "delete", w, method: :delete, data: { confirm: "You sure?" }
+
+    .row
       -for w in @word
-        %tr
-          %td
-            = w.name_de
-          %td
-            = w.description_de
-          %td
-            = w.syntactical_category_de
-          %td
-            = w.semantical_categories_de
-          %td
-            .btn.btn-default.btn-xs
-              = link_to "Show", word_path(w), :method => :get
-            .btn.btn-default.btn-xs
-              =link_to 'Edit', edit_word_path(w)
-            .btn.btn-default.btn-xs
-              = link_to "delete", w, method: :delete, data: { confirm: "You sure?" }
+        .col-lg-12.flash-card-head
+          = w.name_de
+        .col-lg-12.flash-card-body
+          = w.description_de
+        .col-lg-6.flash-card-body
+          Syntactical Category
+          .row
+            .col-lg-12.flash-card-body-end
+              = w.syntactical_category_de
+        .col-lg-6.flash-card-body
+          Semantical Category
+          .row
+            .col-lg-12.flash-card-body-end
+              = w.semantical_categories_de
 
