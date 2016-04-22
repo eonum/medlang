@@ -28,7 +28,18 @@
 // Example:
 // @link-color: #ff0000;
 
-html {  }
+/* Universal classes which can used everywhere
+-------------------------------------------------- */
+.spacer {
+  height: 20px; /* define margin as you see fit */
+  background-color: #319ab9;
+}
+.no-padding {
+  padding: 0;
+}
+.background-color-21687d {
+  background-color: #21687d;
+}
 
 /* Body
 -------------------------------------------------- */
@@ -42,10 +53,7 @@ body {
 
 /* Grid system
 -------------------------------------------------- */
-.spacer {
-  height: 20px; /* define margin as you see fit */
-  background-color: #319ab9;
-}
+
 
 
 
@@ -54,7 +62,7 @@ body {
 /* Navbar
 -------------------------------------------------- */
 
-@navbar-inverse-bg: #4E5584;
+@navbar-inverse-bg: #21687d;
 @navbar-inverse-color: #ffffff;
 @navbar-inverse-link-color: darken(@navbar-inverse-color, 5%);
 
@@ -68,9 +76,7 @@ body {
   font-weight: bold;
 }
 
-.no-padding{
-  padding: 0;
-}
+
 
 .list-group-item {
   //box-shadow: 0 0 30px 0px #888;
