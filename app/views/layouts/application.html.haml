@@ -24,8 +24,7 @@
           Medlang
         .navbar-collapse.collapse.navbar-responsive-collapse
           %ul.nav.navbar-nav
-            %li=link_to content_tag(:span,' Home', :class => 'glyphicon glyphicon-home active', :aria => {:hidden => "true"}), root_url
-            -#%li= link_to fa_icon('exclamation-circle', 'About'), about_url
+            %li= link_to fa_icon('exclamation-circle', 'About'), root_url
           %ul.nav.navbar-nav.navbar-right
             %li
               =link_to content_tag(:span, ' Category Library', :class => 'glyphicon glyphicon-book', :aria => {:hidden => "true"}), categories_path
