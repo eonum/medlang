@@ -28,20 +28,22 @@
                 .btn.btn-default.btn-xs
                   = link_to "delete", w, method: :delete, data: { confirm: "You sure?" }
 
+  -for w in @word
     .row
-      -for w in @word
-        .col-lg-12.flash-card-head
-          = w.name_de
-        .col-lg-12.flash-card-body
-          = w.description_de
-        .col-lg-6.flash-card-body
-          Syntactical Category
-          .row
-            .col-lg-12.flash-card-body-end
-              = w.syntactical_category_de
-        .col-lg-6.flash-card-body
-          Semantical Category
-          .row
-            .col-lg-12.flash-card-body-end
-              = w.semantical_categories_de
+    .col-lg-12.flash-card-head
+      = w.name_de
+    .row
+    .col-lg-12.flash-card-content
+      = w.description_de
+    .row
+    .col-lg-6.flash-card-sub-heading
+      Syntactical Category
+      .row
+        .col-lg-12.flash-card-content
+          = w.syntactical_category_de
 
+    .col-lg-6.flash-card-sub-heading
+      Semantical Category
+      .row
+        .col-lg-12.flash-card-content
+          = w.semantical_categories_de
