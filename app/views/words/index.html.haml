@@ -1,28 +1,27 @@
 %h1 Overview Flash Cards
 -for w in @word
   .row
-  .col-lg-12.flash-card-head
-    = w.name_de
+  .col-lg-12.flash-card-container
+    %span{ :style => "padding-left: 15px;" }
+      = w.name_de
     .btn.btn-default.btn-xs.pull-right
       = link_to "Show", word_path(w), :method => :get
     .btn.btn-default.btn-xs.pull-right
       =link_to 'Edit', edit_word_path(w)
     .btn.btn-default.btn-xs.pull-right
       = link_to "delete", w, method: :delete, data: { confirm: "You sure?" }
-  .row
-  .col-lg-12.flash-card-content
-    = w.description_de
-  .row
-  .col-lg-6.flash-card-sub-heading
-    Syntactical Category
     .row
-      .col-lg-12.flash-card-content
-        = w.syntactical_category_de
+    .col-lg-12.flash-card-content
+      = w.description_de
+    .row
+    .col-lg-6.flash-card-sub-heading
+      Syntactical Category
+      .row
+        .col-lg-12.flash-card-content
+          = w.syntactical_category_de
 
-  .col-lg-6.flash-card-sub-heading
-    Semantical Category
-    .row
-      .col-lg-12.flash-card-content
-        = w.semantical_categories_de
-  .row
-  .col-lg-12.flash-card-empty
+    .col-lg-6.flash-card-sub-heading
+      Semantical Category
+      .row
+        .col-lg-12.flash-card-content
+          = w.semantical_categories_de
