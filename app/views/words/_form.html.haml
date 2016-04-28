@@ -1,0 +1,24 @@
+= form_for @word do |w|
+  - if @word.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@word.errors.count, "error")} prohibited this user from being saved:"
+      %ul
+        - @word.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = w.label :name_de
+    = w.text_field :name_de
+  .field
+    = w.label :description_de
+    = w.text_area :description_de
+  .field
+    = w.label :syntactical_category_de
+    = w.text_field :syntactical_category_de
+  .field
+    = w.label "Semantical Categories"
+    .form-group
+      - categories_array = Category.all.map{ |category| category.name_de}
+      = w.select(:semantical_categories_de, options_for_select(categories_array),{}, {:class => 'form-control'})
+  .field
+    = w.submit 'Save'
