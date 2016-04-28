@@ -9,6 +9,6 @@ class Word
   field :description_en, type: String
   field :syntactical_category_de, type: String
   field :syntactical_category_en, type: String
-  field :semantical_categories_de, type: String
+  field :semantical_categories_de, type: String, :default => nil
   field :semantical_categories_en, type: Array
 end
