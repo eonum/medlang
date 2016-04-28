@@ -6,4 +6,7 @@ class User
   field :password, type: String
   field :email, type: String
   field :admin, type: Mongoid::Boolean
+
+  validates(:first_name, presence: true)
+
 end

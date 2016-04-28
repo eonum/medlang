@@ -30,5 +30,9 @@ module MedLang
     config.i18n.default_locale = :de
     config.i18n.fallbacks =[:de, :fr, :it, :en]
     config.i18n.enforce_available_locales = false
+
+    config.generators do |g|
+      g.orm :active_record
+    end
   end
 end
