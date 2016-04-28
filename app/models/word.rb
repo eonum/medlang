@@ -11,4 +11,6 @@ class Word
   field :syntactical_category_en, type: String
   field :semantical_categories_de, type: String, :default => nil
   field :semantical_categories_en, type: Array
+
+  validates_uniqueness_of :name_de, { message: "Name allready taken" }
 end

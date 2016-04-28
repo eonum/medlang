@@ -15,8 +15,15 @@ class WordsController < ApplicationController
   def create
     @word = Word.new(word_params)
 
-    @word.save
-    redirect_to words_path
+    respond_to do |format|
+      if @word.save
+        format.html { redirect_to @word, notice: 'User was successfully created.' }
+        format.json { render :index, status: :created, location: @word }
+      else
+        format.html { render :new }
+        format.json { render json: @word.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   def edit
@@ -24,13 +31,15 @@ class WordsController < ApplicationController
   end
 
   def update
-    @word = Word.find(params[:id])
+    respond_to do |format|
+      if @word.update(user_params)
+        format.html { redirect_to @word, notice: 'User was successfully updated.' }
+        format.json { render :index, status: :ok, location: @word }
+      else
+        format.html { render :edit }
+        format.json { render json: @user.errors, status: :unprocessable_entity }
+      end
 
-    if @word.update_attributes(word_params)
-      flash[:notice] = 'successfully updated!'
-      redirect_to words_path
-    else
-      render :action => 'edit'
     end
   end
 
