@@ -1,21 +1,19 @@
+%h1=@word.name_de
 .row
-  .col-md-12
-    %h2 #{@word.name_de}
-.row
-  .col-md-3
-    %h4 Description
-  .col-md-9
-    #{@word.description_de}
-.row
-  .col-md-3
-    %h4 Syntacitical Category
-  .col-md-9
-    #{@word.syntactical_category_de}
-.row
-  .col-md-3
-    %h4 Semantical Categories
-  .col-md-9
-    #{@word.semantical_categories_de}
+.col-lg-12.flash-card-content
+  = @word.description_de
+.row.border-between
+.col-lg-6.flash-card-sub-heading.border-right
+  Syntactical Category
+  .row
+    .col-lg-12.flash-card-content.border-right
+      = @word.syntactical_category_de
+
+.col-lg-6.flash-card-sub-heading
+  Semantical Category
+  .row
+    .col-lg-12.flash-card-content
+      = @word.semantical_categories_de
 
 
 

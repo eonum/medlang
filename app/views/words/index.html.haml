@@ -3,7 +3,7 @@
   .row.border-between
   .col-lg-12.flash-card-container
     %span{ :style => "padding-left: 15px;" }
-      = w.name_de
+      %u= w.name_de
     .btn.btn-default.btn-xs.pull-right
       = link_to "Show", word_path(w), :method => :get
     .btn.btn-default.btn-xs.pull-right
