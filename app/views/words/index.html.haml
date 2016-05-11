@@ -1,7 +1,7 @@
 %h1 Overview Flash Cards
 .row
   -# this if for later
-  .col-lg-10
+  .col-lg-12
     - categories_array = Category.all.map { |category| category.name_de}
     = select_tag :category_name_de, options_for_select(categories_array), {:onchange => 'this.form.submit()'}
 
