@@ -1,33 +1,21 @@
 %h1 Overview Flash Cards
--for w in @word
-  .row
-    .panel.panel-default
-      .panel-heading
-        = w.name_de
-        .btn.btn-default.btn-xs.pull-right
-          = link_to "Show", word_path(w), :method => :get
-        .btn.btn-default.btn-xs.pull-right
-          =link_to 'Edit', edit_word_path(w)
-        .btn.btn-default.btn-xs.pull-right
-          = link_to "delete", w, method: :delete, data: { confirm: "You sure?" }
-      .panel-body
-        = w.description_de
+.row
+  -# this if for later
+  .col-lg-10
+    - categories_array = Category.all.map { |category| category.name_de}
+    = select_tag :category_name_de, options_for_select(categories_array), {:onchange => 'this.form.submit()'}
 
-
--#  .row
-    .col-lg-12.flash-card-content
-      = w.description_de
-    .row.border-between
-    .col-lg-6.flash-card-sub-heading.border-right
-      Syntactical Category
-      .row
-        .col-lg-12.flash-card-content.border-right
-          = w.syntactical_category_de
-
-    .col-lg-6.flash-card-sub-heading
-      Semantical Category
-      .row
-        .col-lg-12.flash-card-content
-          = w.semantical_categories_de
-
-
+.row
+  .col-lg-12
+    -for w in @word
+      .panel.panel-default
+        .panel-heading
+          = w.name_de
+          .btn.btn-default.btn-xs.pull-right
+            = link_to "Show", word_path(w), :method => :get
+          .btn.btn-default.btn-xs.pull-right
+            =link_to 'Edit', edit_word_path(w)
+          .btn.btn-default.btn-xs.pull-right
+            = link_to "delete", w, method: :delete, data: { confirm: "You sure?" }
+        .panel-body
+          = w.description_de
