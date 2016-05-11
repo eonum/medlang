@@ -1,16 +1,17 @@
 %h1 Overview Flash Cards
 -for w in @word
-  .row.border-between
-  .col-lg-12.flash-card-container
-    %span{ :style => "padding-left: 15px;" }
-      %u= w.name_de
-    .btn.btn-default.btn-xs.pull-right
-      = link_to "Show", word_path(w), :method => :get
-    .btn.btn-default.btn-xs.pull-right
-      =link_to 'Edit', edit_word_path(w)
-    .btn.btn-default.btn-xs.pull-right
-      = link_to "delete", w, method: :delete, data: { confirm: "You sure?" }
-    .row
+  .row
+    .col-lg-12
+      %span{ :style => "padding-left: 15px;" }
+        %u= w.name_de
+      .btn.btn-default.btn-xs.pull-right
+        = link_to "Show", word_path(w), :method => :get
+      .btn.btn-default.btn-xs.pull-right
+        =link_to 'Edit', edit_word_path(w)
+      .btn.btn-default.btn-xs.pull-right
+        = link_to "delete", w, method: :delete, data: { confirm: "You sure?" }
+
+-#  .row
     .col-lg-12.flash-card-content
       = w.description_de
     .row.border-between
