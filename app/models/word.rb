@@ -12,5 +12,5 @@ class Word
   field :semantical_categories_de, type: String, :default => nil
   field :semantical_categories_en, type: Array
 
-  validates_uniqueness_of :name_de, { message: "Name allready taken" }
+  validates :name_de, uniqueness: {message: "should happen once per year" }
 end

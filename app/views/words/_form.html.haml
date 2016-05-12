@@ -1,7 +1,7 @@
 = form_for @word do |w|
   - if @word.errors.any?
     #error_explanation
-      %h2= "#{pluralize(@word.errors.count, "error")} prohibited this user from being saved:"
+      %h2= "#{pluralize(@word.errors.count, "error")} prohibited this word from being saved:"
       %ul
         - @word.errors.full_messages.each do |msg|
           %li= msg
@@ -22,4 +22,6 @@
     = w.select :semantical_categories_de, options_for_select(categories.collect{|c| [c.name_de]}),:include_blank => true
   .btn.btn-primary.btn-block
     = w.submit 'Save', :class => 'no-border'
+
+
 
