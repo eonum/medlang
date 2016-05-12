@@ -15,5 +15,10 @@
     .col-lg-12.flash-card-content
       = @word.semantical_categories_de
 
-
-
+.row
+  .col-lg-12
+    - unless  @word.id == Word.first.id
+      .btn
+        = link_to 'Previous', Word.get_previous_word(@word)
+    - unless  @word.id == Word.last.id
+      = link_to  'Next', Word.get_next_word(@word)
