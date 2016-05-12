@@ -1,4 +1,5 @@
 %h1=@word.name_de
+= link_to 'Back', words_path
 .row
 .col-lg-12.flash-card-content
   = @word.description_de
@@ -17,8 +18,11 @@
 
 .row
   .col-lg-12
-    - unless  @word.id == Word.first.id
-      .btn
-        = link_to 'Previous', Word.get_previous_word(@word)
-    - unless  @word.id == Word.last.id
-      = link_to  'Next', Word.get_next_word(@word)
+    %br
+    - if @word.id != Word.asc(:id).first
+      .btn.btn-default.btn-xs
+        = link_to 'Karte zurück', Word.get_previous_word(@word)
+
+    - if @word.id != Word.asc(:id).last
+      .btn.btn-default.btn-xs.pull-right
+        = link_to  'Nächste Karte', Word.get_next_word(@word)
