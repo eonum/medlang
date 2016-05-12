@@ -12,5 +12,5 @@ class Word
   field :semantical_categories_de, type: String, :default => nil
   field :semantical_categories_en, type: Array
 
-  validates :name_de, uniqueness: {message: "should happen once per year" }
+  validates :name_de, uniqueness: {message: "Dieses Wort gibt es bereits." }
 end

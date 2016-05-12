@@ -1,0 +1,7 @@
+- if @word.errors.any?
+  #error_explanation
+    .alert.alert-danger
+      %ul
+        - @word.errors.messages.values.each do |msg|
+          - msg.each do  |m|
+            %li= m
