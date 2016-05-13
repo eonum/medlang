@@ -23,23 +23,24 @@ class Word
 
 
 
+  # those two functions are used for navigating from on word to an other.
+  # can't use the function index directly on mongo objects so i create the simple array words with all IDs to get the current index, afther that i use this index with a operatoin (+/- 1) to return the complete mongo object
   def self.get_previous_word(current_word)
-    # mongodb don't allow index function so first i create a normal array words with the ids, this way i can read the index and then i give the mongo word back with this index -1
-    words_mongo = Word.all
+
+    mongo_document = Word.all
     words = []
     Word.each{|w| words.push(w.id)}
     index = words.index(current_word.id)
     index = index - 1
-    words_mongo[index]
+    mongo_document[index]
   end
 
   def self.get_next_word(current_word)
-    words_mongo = Word.all
+    mongo_document = Word.all
     words = []
     Word.each{|w| words.push(w.id)}
     index = words.index(current_word.id)
     index = index + 1
-    words_mongo[index]
+    mongo_document[index]
   end
-
 end
