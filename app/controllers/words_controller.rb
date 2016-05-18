@@ -17,7 +17,7 @@ class WordsController < ApplicationController
 
     respond_to do |format|
       if @word.save
-        format.html { redirect_to @word, notice: 'User was successfully created.' }
+        format.html { redirect_to @word, notice: 'Word was successfully created.' }
         format.json { render :index, status: :created, location: @word }
       else
         format.html { render :new }
@@ -33,7 +33,7 @@ class WordsController < ApplicationController
   def update
     respond_to do |format|
       if @word.update(user_params)
-        format.html { redirect_to @word, notice: 'User was successfully updated.' }
+        format.html { redirect_to @word, notice: 'Word was successfully updated.' }
         format.json { render :index, status: :ok, location: @word }
       else
         format.html { render :edit }
@@ -46,12 +46,12 @@ class WordsController < ApplicationController
   def destroy
     @word = Word.find(params[:id])
     @word.destroy
-    flash.notice= "Word #{@word.name_de} was deleted"
+    flash.notice= "Word #{@word.name} was deleted"
     redirect_to words_path
   end
 
   def word_params
-    allow = [:name_de, :description_de, :syntactical_category_de, {:semantical_categories_de => []}]
+    allow = [:name, :description, :syntactical_category, {:semantical_categories => []}]
     params.require(:word).permit(allow)
   end
 end
