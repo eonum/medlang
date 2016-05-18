@@ -1,19 +1,19 @@
 = form_for @word do |w|
   = render 'shared/error_messages'
   .field
-    = w.label :name_de
-    = w.text_field :name_de
+    = w.label :name
+    = w.text_field :name
   .field
-    = w.label :description_de
-    = w.text_area :description_de
+    = w.label :description
+    = w.text_area :description
   .field
     - categories = Category.where('type_de' => 'syntax')
-    = w.label :syntactical_category_de
-    = w.select :syntactical_category_de, options_for_select(categories.collect{|c| [c.name_de]})
+    = w.label :syntactical_category
+    = w.select :syntactical_category, options_for_select(categories.collect{|c| [c.name_de]})
   .field
     = w.label "Semantical Categories"
     - words = Word.all
-    = w.select :semantical_categories_de, options_for_select(words.collect{|w| [w.name_de]}),:include_blank => true
+    = w.select :semantical_categories, options_for_select(words.collect{|w| [w.name]}),:include_blank => true
 
 
   .btn.btn-primary.btn-block

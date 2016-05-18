@@ -1,18 +1,7 @@
-%h2 Edit word
-=form_for @word do |w|
-  = w.label 'Wort'
-  %br
-  = w.text_field :name_de
-  %br
-    = w.label 'Description'
-    %br
-    = w.text_area :description_de
-  %br
-    = w.label "Syntacitacl Category"
-    %br
-    = w.text_field :syntactical_category_de
-  %br
-    = w.label "Semincal Category"
-    %br
-    = w.select :semantical_categories_de, ['etiology','allergology','anatomy']
-    = w.submit
+.row
+  .col-md-6.col-md-offset-3
+    %h2 Edit word
+
+    = render 'form'
+
+    = link_to 'Back', words_path
