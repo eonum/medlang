@@ -18,5 +18,5 @@
 //= require nprogress
 //= require nprogress-turbolinks
 //= require turboboost
-//requre gmaps
+//= require_self
 //= require_tree .
