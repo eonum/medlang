@@ -14,7 +14,14 @@
     = w.label "Semantical Categories"
     %br
     %span
-      = select_tag 'word[semantical_categories][]', options_for_select( Word.all.collect{|word| [word.name,word.id]})
+      = select_tag 'word[semantical_categories][]', options_for_select( Word.all.collect{|word| [word.name,[word.id,word.name]]}, { include_blank: true})
+    %span{onclick: "$(this).prev().append(listEntry.replace(\"@@word@@\", \"word[semantical_categories][]\"));", title: ""} Add value
+
   %br
   .btn.btn-primary.btn-block
     = w.submit 'Save', :class => 'no-border'
+
+
+:javascript
+  var listEntry = "<span>#{j select_tag 'word[semantical_categories][]', options_for_select( Word.all.collect{|word| [word.name,word.id]}, { include_blank: true})}"
+  + "#{j image_tag '/images/icons/bullet_toggle_minus.png', :title =>'delete', :onclick => '$(this).closest(\'span\').remove()', :class => 'delete_button_array_list'}</span>";
