@@ -6,7 +6,7 @@ class Word
   field :name, type: String
   field :description, type: String
   field :syntactical_category, type: String
-  field :semantical_categories, type: Array, :default => nil
+  field :semantical_categories, type: Array, :default => []
 
 
   # OPTIMIZE: if the word allready exist, it should ask the user if he wants to edit the existing word.
@@ -15,7 +15,6 @@ class Word
   validates :name, presence: true;
   validates :description, presence: true;
   validates :syntactical_category, presence: true;
-  validates :semantical_categories, presence: true;
 
 
 

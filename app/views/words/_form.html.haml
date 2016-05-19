@@ -12,12 +12,9 @@
     = w.select :syntactical_category, options_for_select(categories.collect{|c| [c.name_de]})
   .field
     = w.label "Semantical Categories"
-    - words = Word.all
-    = w.select :semantical_categories, options_for_select(words.collect{|w| [w.name]}),:include_blank => true
-
-
+    %br
+    %span
+      = select_tag 'word[semantical_categories][]', options_for_select( Word.all.collect{|word| [word.name,word.id]})
+  %br
   .btn.btn-primary.btn-block
     = w.submit 'Save', :class => 'no-border'
-
-
-

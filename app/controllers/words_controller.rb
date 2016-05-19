@@ -31,9 +31,11 @@ class WordsController < ApplicationController
   end
 
   def update
+    @word = Word.find params[:id]
+
     respond_to do |format|
-      if @word.update(user_params)
-        format.html { redirect_to @word, notice: 'Word was successfully updated.' }
+      if @word.update(word_params)
+        format.html { redirect_to @word, notice: I18n.t("word_update_success") }
         format.json { render :index, status: :ok, location: @word }
       else
         format.html { render :edit }
@@ -51,7 +53,7 @@ class WordsController < ApplicationController
   end
 
   def word_params
-    allow = [:name, :description, :syntactical_category, {:semantical_categories => []}]
+    allow = [:name, :description, :syntactical_category, semantical_categories:[]]
     params.require(:word).permit(allow)
   end
 end
