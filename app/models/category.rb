@@ -1,6 +1,8 @@
 class Category
   include Mongoid::Document
-  has_many :words
+
+  has_many :syntactical_words, class_name: "Word", inverse_of: :syntactical_category, :autosave => true
+  has_many :semantical_words, class_name: "Word", inverse_of: :syntactical_categories, :autosave => true
 
 
   field :name_de, type: String

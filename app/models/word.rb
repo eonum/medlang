@@ -1,12 +1,11 @@
 class Word
   include Mongoid::Document
 
-  has_many :categories
+  belongs_to :syntactical_category, class_name: "Category", inverse_of: :syntactical_words, :autosave => true
+  has_and_belongs_to_many :semantical_categories, class_name: "Category", inverse_of: :semantical_words, :autosave => true
 
   field :name, type: String
   field :description, type: String
-  field :syntactical_category, type: String
-  field :semantical_categories, type: Array, :default => []
 
 
   # OPTIMIZE: if the word allready exist, it should ask the user if he wants to edit the existing word.
@@ -14,7 +13,6 @@ class Word
 
   validates :name, presence: true;
   validates :description, presence: true;
-  validates :syntactical_category, presence: true;
 
 
 
