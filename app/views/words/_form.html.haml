@@ -9,13 +9,16 @@
   .field
     - categories = Category.where('type_de' => 'syntax')
     = w.label :syntactical_category
-    = w.select :syntactical_category, options_for_select(categories.collect{|c| [c.name_de]})
+    = w.select :syntactical_category, options_for_select(categories.collect{|c| [c.name_de, c.id]})
   .field
     = w.label "Semantical Categories"
     %br
-    %span
-      = select_tag 'word[semantical_categories][]', options_for_select( Word.all.collect{|word| [word.name,[word.id,word.name]]}, { include_blank: true})
-    %span{onclick: "$(this).prev().append(listEntry.replace(\"@@word@@\", \"word[semantical_categories][]\"));", title: ""} Add value
+      %span
+        = select_tag 'word[semantical_categories_ids][]', options_for_select( Word.all.collect{|word| [word.name, word.id]}, { include_blank: true})
+
+
+
+
 
   %br
   .btn.btn-primary.btn-block
@@ -23,5 +26,5 @@
 
 
 :javascript
-  var listEntry = "<span>#{j select_tag 'word[semantical_categories][]', options_for_select( Word.all.collect{|word| [word.name,word.id]}, { include_blank: true})}"
+  var listEntry = "<span>#{j select_tag 'word[semantical_categories_ids][]', options_for_select(Category.all.collect{|c| [c.name_de,c.id]}, { include_blank: true})}"
   + "#{j image_tag '/images/icons/bullet_toggle_minus.png', :title =>'delete', :onclick => '$(this).closest(\'span\').remove()', :class => 'delete_button_array_list'}</span>";

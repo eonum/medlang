@@ -1,5 +1,7 @@
 class Word
   include Mongoid::Document
+  include Mongoid::Attributes::Dynamic
+
 
   belongs_to :syntactical_category, class_name: "Category", inverse_of: :syntactical_words, :autosave => true
   has_and_belongs_to_many :semantical_categories, class_name: "Category", inverse_of: :semantical_words, :autosave => true

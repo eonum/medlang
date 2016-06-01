@@ -14,6 +14,7 @@ class WordsController < ApplicationController
 
   def create
     @word = Word.new(word_params)
+    @categories = Category.all
     puts @word
 
     respond_to do |format|
@@ -54,7 +55,7 @@ class WordsController < ApplicationController
   end
 
   def word_params
-    allow = [:name, :description, :syntactical_category, :semantical_categories]
+    allow = [:name, :description, :syntactical_category, :semantical_categories_ids => []]
     params.require(:word).permit(allow)
   end
 end
