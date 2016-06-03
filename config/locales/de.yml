@@ -20,12 +20,14 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 de:
-  # This section is for all translation in connection with 'word'
-  hello: "Hello world"
+  #controlle part
   word_create_success: "Das Wort wurde erfolgreich erstellt"
   word_update_success: "Das Wort wurde erfolgreich geändert"
+  delete_confirmation: "Wirklich löschen?"
 
-
-  # This section is for all translation in connection with 'word'
-
+  #view part
+  word_name: "Name"
+  word_description: "Beschreibung"
+  word_syntactical_category: "Syntax-Kategorie"
+  word_semantical_category: "Semantische Kategorie/en"
 

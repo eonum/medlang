@@ -20,5 +20,16 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  #controller part
   word_create_success: "Word has been successfully created"
   word_update_success: "The word has been successfully updated"
+  delete_confirmation: "Are you sure Bro?"
+
+  #view
+  word_name: "Name"
+  word_description: "Description"
+  word_syntactical_category: "Syntax Category"
+  word_semantical_category: "Semantical Category"
+
+
+
