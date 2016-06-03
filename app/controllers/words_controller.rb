@@ -19,7 +19,7 @@ class WordsController < ApplicationController
 
     respond_to do |format|
       if @word.save
-        format.html { redirect_to @word, notice: 'Word was successfully created.' }
+        format.html { redirect_to @word, notice: t("word_create_success") }
         format.json { render :index, status: :created, location: @word }
       else
         format.html { render :new }
@@ -37,7 +37,7 @@ class WordsController < ApplicationController
 
     respond_to do |format|
       if @word.update(word_params)
-        format.html { redirect_to @word, notice: I18n.t("word_update_success") }
+        format.html { redirect_to @word, notice: t("word_update_success") }
         format.json { render :index, status: :ok, location: @word }
       else
         format.html { render :edit }
@@ -50,7 +50,7 @@ class WordsController < ApplicationController
   def destroy
     @word = Word.find(params[:id])
     @word.destroy
-    flash.notice= "Word #{@word.name} was deleted"
+    flash[:notice] = t(:delete_confirmation)
     redirect_to words_path
   end
 
