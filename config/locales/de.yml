@@ -19,6 +19,13 @@
 # To learn more, please read the Rails Internationalization guide
 # available at http://guides.rubyonrails.org/i18n.html.
 
-en:
-  word_create_success: "Word has been successfully created"
-  word_update_success: "The word has been successfully updated"
+de:
+  # This section is for all translation in connection with 'word'
+  hello: "Hello world"
+  word_create_success: "Das Wort wurde erfolgreich erstellt"
+  word_update_success: "Das Wort wurde erfolgreich geändert"
+
+
+  # This section is for all translation in connection with 'word'
+
+

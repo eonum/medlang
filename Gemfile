@@ -37,3 +37,5 @@ gem 'nprogress-rails'   # Fancy async loading bar at the top of page, Youtube st
 gem 'turboboost'        # Turbolinks for forms
 gem 'mongoid-elasticsearch'
 
+# Internationalization
+gem 'i18n-js'
