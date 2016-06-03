@@ -24,18 +24,18 @@
           Medlang
         .navbar-collapse.collapse.navbar-responsive-collapse
           %ul.nav.navbar-nav
-            %li= link_to fa_icon('exclamation-circle', 'About'), root_url
+            %li= link_to fa_icon('exclamation-circle', t('about')), root_url
           %ul.nav.navbar-nav.navbar-right
             %li
-              =link_to content_tag(:span, ' Category Library', :class => 'glyphicon glyphicon-book', :aria => {:hidden => "true"}), categories_path
+              =link_to content_tag(:span, t('category_library'), :class => 'glyphicon glyphicon-book', :aria => {:hidden => "true"}), categories_path
             %li
-              =link_to content_tag(:span, ' New Category', :class => 'glyphicon glyphicon-plus', :aria => {:hidden => "true"}), new_category_path
+              =link_to content_tag(:span, t('new_category'), :class => 'glyphicon glyphicon-plus', :aria => {:hidden => "true"}), new_category_path
             %li
-              =link_to content_tag(:span, ' Card Library', :class => 'glyphicon glyphicon-book', :aria => {:hidden => "true"}), words_path
+              =link_to content_tag(:span, t('card_libary'), :class => 'glyphicon glyphicon-book', :aria => {:hidden => "true"}), words_path
             %li
-              =link_to content_tag(:span, ' New Card', :class => 'glyphicon glyphicon-plus', :aria => {:hidden => "true"}), new_word_path
+              =link_to content_tag(:span, t('new_card'), :class => 'glyphicon glyphicon-plus', :aria => {:hidden => "true"}), new_word_path
             %li
-              =link_to content_tag(:span, ' Login', :class => 'glyphicon glyphicon-log-in', :aria => {:hidden => "true"}), root_url
+              =link_to content_tag(:span, t('login'), :class => 'glyphicon glyphicon-log-in', :aria => {:hidden => "true"}), root_url
             %li.dropdown
               %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "#", :role => "button"}
                 = fa_icon('flag', current_language)

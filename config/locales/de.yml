@@ -33,8 +33,18 @@ de:
 
   save: "speichern"
   edit: "bearbeiten"
-
   delete: "löschen"
   back: "zurück"
+
+  #navbar section
+  about: "Über uns"
+  category_library: "Categorien"
+  new_category: "Neue Categorie"
+  card_libary: "Karteikarten"
+  new_card: "Neue Karteikarte"
+  login: "login"
+
+
+
 
 

@@ -37,5 +37,12 @@ en:
   delete: "delete"
   back: "back"
 
+  #navbar section
+  about: "About us"
+  category_library: "Category Library"
+  new_category: "new Categorie"
+  card_libary: "Flash Cards"
+  new_card: "New Card"
+  login: "login"
 
 
