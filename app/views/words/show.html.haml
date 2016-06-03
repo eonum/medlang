@@ -1,5 +1,6 @@
 %h1=@word.name
 = link_to 'Back', words_path
+= link_to 'Edit', edit_word_path
 .row
 .col-lg-12.flash-card-content
   = @word.description
@@ -14,7 +15,7 @@
   Semantical Category
   .row
     .col-lg-12.flash-card-content
-      = @word.semantical_categories
+      /= @word.semantical_categories[0]('name_de')
 
 .row
   .col-lg-12

@@ -1,28 +1,29 @@
 = form_for @word do |w|
   = render 'shared/error_messages'
+  .form-group
+    = w.label t("word_name")
+    = w.text_field :name, class: "form-control"
+  %br
   .field
-    = t("word_name")
-    = w.text_field :name
-  .field
-    = t("word_description")
-    = w.text_area :description
+    = w.label t("word_description")
+    = w.text_area :description, class: "form-control"
   .field
     - categories = Category.where('type_de' => 'syntax')
-    = t("word_syntactical_category")
+    = w.label t("word_syntactical_category")
     = w.select :syntactical_category, options_for_select(categories.collect{|c| [c.name_de, c.id]})
   .field
-    = t("word_semantical_category")
+    = w.label t("word_semantical_category")
     %br
       %span
         = select_tag 'word[semantical_categories_ids][]', options_for_select( Word.all.collect{|word| [word.name, word.id]}, { include_blank: true})
-
-
-
-
-
   %br
   .btn.btn-primary.btn-block
-    = w.submit 'Save', :class => 'no-border'
+    = w.submit t("save"), :class => 'no-border'
+  %br
+.row
+  .col-md-2.col-md-offset-5
+    %a.btn.btn-primary.btn-block{:href => words_path, :role => "button"}
+      =t('back')
 
 
 :javascript
