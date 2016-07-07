@@ -45,4 +45,11 @@ en:
   new_card: "New Card"
   login: "login"
 
+  #footer
+    company: 'eonum Inc.'
+    street: 'Effingerstrasse 55'
+    zip: 'CH-3008'
+    city: 'Bern'
+    email: 'email:'
+
 

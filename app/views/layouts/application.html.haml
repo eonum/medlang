@@ -56,13 +56,15 @@
         .row
           .col-md-6.col-md-offset-3
             %p.text-center
-              eonum AG
+              = t('company')
               %br
-              Tscharnerstrasse 41
+              = t('street')
               %br
-              CH-3007 Bern
+              = t('zip')
+              = t('city')
               %br
               %a{href: "http://eonum.ch"} www.eonum.ch
               %br
-              E-Mail: #{mail_to 'info@eonum.ch'}
+              =t('email')
+              #{mail_to 'info@eonum.ch'}
               %br

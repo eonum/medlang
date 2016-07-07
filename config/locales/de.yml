@@ -44,6 +44,13 @@ de:
   new_card: "Neue Karteikarte"
   login: "login"
 
+  #footer
+  company: 'eonum AG'
+  street: 'Effingerstrasse 55'
+  zip: '3008'
+  city: 'Bern'
+  email: 'E-Mail:'
+
 
 
 
