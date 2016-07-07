@@ -23,7 +23,7 @@ en:
   #controller part
   word_create_success: "Word has been successfully created"
   word_update_success: "The word has been successfully updated"
-  delete_confirmation: "Are you sure Bro?"
+  delete_confirmation: "Are you sure?"
 
   #view
   word_name: "Name"
@@ -46,10 +46,10 @@ en:
   login: "login"
 
   #footer
-    company: 'eonum Inc.'
-    street: 'Effingerstrasse 55'
-    zip: 'CH-3008'
-    city: 'Bern'
-    email: 'email:'
+  company: 'eonum Inc.'
+  street: 'Effingerstrasse 55'
+  zip: 'CH-3008'
+  city: 'Bern'
+  email: 'email:'
 
 
