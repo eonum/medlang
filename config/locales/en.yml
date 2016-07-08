@@ -32,11 +32,13 @@ en:
   word_semantical_category: "Semantical Category"
   words_overview: 'Words'
 
-
+  #general stuff
   save: "save"
   edit: "edit"
   delete: "delete"
   back: "back"
+  show: 'show'
+  confirmation_question: 'Are you sure?'
 
   #navbar section
   about: "About us"

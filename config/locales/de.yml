@@ -38,6 +38,9 @@ de:
   edit: "bearbeiten"
   delete: "löschen"
   back: "zurück"
+  show: 'anzeigen'
+  confirmation_question: 'Sind Sie sich sicher?'
+
 
   #navbar section
   about: "Über uns"

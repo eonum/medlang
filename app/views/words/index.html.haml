@@ -13,10 +13,10 @@
         .panel-heading
           = w.name
           .btn.btn-default.btn-xs.pull-right
-            = link_to "Show", word_path(w), :method => :get
+            = link_to t('show'), word_path(w), :method => :get
           .btn.btn-default.btn-xs.pull-right
-            =link_to 'Edit', edit_word_path(w)
+            =link_to t('edit'), edit_word_path(w)
           .btn.btn-default.btn-xs.pull-right
-            = link_to "delete", w, method: :delete, data: { confirm: "You sure?" }
+            = link_to t('delete'), w, method: :delete, data: { confirm: t('confirmation_question') }
         .panel-body
           = w.description
