@@ -25,11 +25,12 @@ en:
   word_update_success: "The word has been successfully updated"
   delete_confirmation: "Are you sure?"
 
-  #view
+  #word view
   word_name: "Name"
   word_description: "Description"
   word_syntactical_category: "Syntax Category"
   word_semantical_category: "Semantical Category"
+  words_overview: 'Words'
 
 
   save: "save"
@@ -51,8 +52,5 @@ en:
   zip: 'CH-3008'
   city: 'Bern'
   email: 'email:'
-
-  #word view index
-  overview_words: 'Words'
 
 

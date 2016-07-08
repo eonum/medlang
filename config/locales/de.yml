@@ -25,12 +25,15 @@ de:
   word_update_success: "Das Wort wurde erfolgreich geändert"
   delete_confirmation: "Wirklich löschen?"
 
-  #view part
+  #word view part
   word_name: "Name"
   word_description: "Beschreibung"
   word_syntactical_category: "Syntax-Kategorie"
   word_semantical_category: "Semantische Kategorie/en"
+  words_overview: 'Übersicht Wörter'
 
+
+  #general stuff
   save: "speichern"
   edit: "bearbeiten"
   delete: "löschen"
@@ -50,9 +53,6 @@ de:
   zip: '3008'
   city: 'Bern'
   email: 'E-Mail:'
-
-  #word view index
-  overview_words: 'Übersicht Wörter'
 
 
 
