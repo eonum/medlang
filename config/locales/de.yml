@@ -51,6 +51,8 @@ de:
   city: 'Bern'
   email: 'E-Mail:'
 
+  #word view index
+  overview_words: 'Übersicht Wörter'
 
 
 

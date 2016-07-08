@@ -1,6 +1,7 @@
-%h1 Overview Flash Cards
+%h1
+  = t('overview_words')
 .row
-  / this if for later
+  / this if for later you will cann select, what category you want to see, but need js or that
   .col-lg-12
     - categories_array = Category.all.map { |category| category.name_de}
     = select_tag :category_name_de, options_for_select(categories_array), {:onchange => 'this.form.submit()'}

@@ -52,4 +52,7 @@ en:
   city: 'Bern'
   email: 'email:'
 
+  #word view index
+  overview_words: 'Words'
+
 
