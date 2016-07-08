@@ -1,30 +1,31 @@
-%h1=@word.name
-
 .row
+.col-lg-12.flash-card-top.rounded-top
+  %h1
+    = @word.name
+    %a{:href => words_path}
+      %i.fa.fa-arrow-left.pull-right{:style => 'color: white;', :title => t('back')}
+    %a{:href => edit_word_path(@word)}
+      %i.fa.fa-pencil-square-o.pull-right{:style => 'color: white;', :title => t('edit')}
+
+
 .col-lg-12.flash-card-content
   = @word.description
 .row.border-between
-.col-lg-6.flash-card-sub-heading.border-right
+.col-lg-6.flash-card-sub-heading.border-right.rounded-bottomm-left
   = t('word_syntactical_category')
   .row
-    .col-lg-12.flash-card-content.border-right
+    .col-lg-12.flash-card-content.border-right.rounded-bottomm-left
       = @word.syntactical_category
-
-.col-lg-6.flash-card-sub-heading
+.col-lg-6.flash-card-sub-heading.rounded-bottomm-right
   = t('word_semantical_category')
   .row
-    .col-lg-12.flash-card-content
+    .col-lg-12.flash-card-content.rounded-bottomm-right
       /= @word.semantical_categories[0]('name_de')
 
 .row
   .col-lg-12
     %br
-    %p
-      %a.btn.btn-primary{:href => edit_word_path(@word), :role => "button"}
-        =t('edit')
-      %a.btn.btn-primary{:href => words_path, :role => "button"}
-        =t('back')
-    %br
+
     - if @word.id != Word.asc(:id).first
       .btn.btn-default.btn-xs
         = link_to 'Karte zurück', Word.get_previous_word(@word)
