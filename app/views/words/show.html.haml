@@ -14,12 +14,14 @@
     = @word.description
 .row.border-between
   .col-lg-6.flash-card-sub-heading.border-right.rounded-bottomm-left
-    = t('word_syntactical_category')
+    %h4
+      = t('word_syntactical_category')
     .row
       .col-lg-12.flash-card-content.border-right.rounded-bottomm-left
         = @word.syntactical_category
   .col-lg-6.flash-card-sub-heading.rounded-bottomm-right
-    = t('word_semantical_category')
+    %h4
+      = t('word_semantical_category')
     .row
       .col-lg-12.flash-card-content.rounded-bottomm-right
         /= @word.semantical_categories[0]('name_de')
