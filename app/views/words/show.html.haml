@@ -1,26 +1,28 @@
 .row
-.col-lg-12.flash-card-top.rounded-top
-  %h1
-    = @word.name
-    %a{:href => words_path}
-      %i.fa.fa-arrow-left.pull-right{:style => 'color: white;', :title => t('back')}
-    %a{:href => edit_word_path(@word)}
-      %i.fa.fa-pencil-square-o.pull-right{:style => 'color: white;', :title => t('edit')}
+  .col-lg-10.col-xs-10.flash-card-top.rounded-top-left
+    %h1
+      = @word.name
+  .col-lg-2.col-xs-2.flash-card-top.rounded-top-right
+    %h1.pull-right
+      %a{:href => words_path}
+        %i.fa.fa-angle-left{:style => 'color: black;', :title => t('back')}
+      %a{:href => edit_word_path(@word)}
+        %i.fa.fa-pencil-square-o{:style => 'color: black;', :title => t('edit')}
 
-
-.col-lg-12.flash-card-content
-  = @word.description
+.row
+  .col-lg-12.flash-card-content
+    = @word.description
 .row.border-between
-.col-lg-6.flash-card-sub-heading.border-right.rounded-bottomm-left
-  = t('word_syntactical_category')
-  .row
-    .col-lg-12.flash-card-content.border-right.rounded-bottomm-left
-      = @word.syntactical_category
-.col-lg-6.flash-card-sub-heading.rounded-bottomm-right
-  = t('word_semantical_category')
-  .row
-    .col-lg-12.flash-card-content.rounded-bottomm-right
-      /= @word.semantical_categories[0]('name_de')
+  .col-lg-6.flash-card-sub-heading.border-right.rounded-bottomm-left
+    = t('word_syntactical_category')
+    .row
+      .col-lg-12.flash-card-content.border-right.rounded-bottomm-left
+        = @word.syntactical_category
+  .col-lg-6.flash-card-sub-heading.rounded-bottomm-right
+    = t('word_semantical_category')
+    .row
+      .col-lg-12.flash-card-content.rounded-bottomm-right
+        /= @word.semantical_categories[0]('name_de')
 
 .row
   .col-lg-12
