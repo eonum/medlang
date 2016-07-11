@@ -39,6 +39,8 @@ de:
   delete: "löschen"
   back: "zurück"
   show: 'anzeigen'
+  backward: 'zurück'
+  forward: 'vorwärts'
   confirmation_question: 'Sind Sie sich sicher?'
 
 

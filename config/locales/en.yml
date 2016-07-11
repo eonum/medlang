@@ -38,6 +38,8 @@ en:
   delete: "delete"
   back: "back"
   show: 'show'
+  backward: 'back'
+  forward: 'next'
   confirmation_question: 'Are you sure?'
 
   #navbar section

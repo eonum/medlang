@@ -25,10 +25,10 @@
 .row
   .col-lg-12
     %br
-
     - if @word.id != Word.asc(:id).first
-      .btn.btn-default.btn-xs
-        = link_to 'Karte zurück', Word.get_previous_word(@word)
+      = link_to Word.get_previous_word(@word) do
+        %i.fa.fa-step-backward{:title => t('backward')}
+
     - if @word.id != Word.asc(:id).last
-      .btn.btn-default.btn-xs.pull-right
-        = link_to  'Nächste Karte', Word.get_next_word(@word)
+      = link_to Word.get_next_word(@word) do
+        %i.fa.fa-step-forward.pull-right{:title => t('forward')}
