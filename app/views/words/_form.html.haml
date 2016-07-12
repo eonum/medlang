@@ -15,7 +15,8 @@
     = w.label t("word_semantical_category")
     %br
       %span
-        = select_tag 'word[semantical_categories_ids][]', options_for_select( Word.all.collect{|word| [word.name, word.id]}, { include_blank: true})
+        - categories = Category.where(type_de: 'semantical')
+        = select_tag 'word[semantical_categories_ids][]', options_for_select( categories.collect{|c| [c.name_de, c.id]}, { include_blank: true})
   %br
   .btn.btn-primary.btn-block
     = w.submit t("save"), :class => 'no-border'

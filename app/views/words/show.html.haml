@@ -13,19 +13,24 @@
   .col-lg-12.flash-card-content
     = @word.description
 .row.border-between
-  .col-lg-6.flash-card-sub-heading.border-right.rounded-bottomm-left
+  .col-lg-6.flash-card-sub-heading.border-right.rounded-bottom-left
     %h4
       = t('word_syntactical_category')
     .row
-      .col-lg-12.flash-card-content.border-right.rounded-bottomm-left
-        = @word.syntactical_category
+      .col-lg-12.flash-card-content.border-right.rounded-bottom-left
+        -if params[:locale] == 'de'
+          = @word.syntactical_category['name_de']
+        -else
+          = @word.syntactical_category['name_en']
   .col-lg-6.flash-card-sub-heading.rounded-bottomm-right
     %h4
       = t('word_semantical_category')
     .row
       .col-lg-12.flash-card-content.rounded-bottomm-right
-        /= @word.semantical_categories[0]('name_de')
-
+        /this part is IMO ugly, but at the moment i can only save the id of the categories as an string, ObjectIDs would be better => have to look at words/_form.html.haml
+        - @word['semantical_categories_ids'].each do |category_ids|
+          - Category.where(id: category_ids).each do |c|
+            = c.name_de
 .row
   .col-lg-12
     %br
