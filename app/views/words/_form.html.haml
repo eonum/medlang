@@ -1,4 +1,5 @@
-= form_for @word do |w|
+= form_for @word do |w| {:autocomplete => "off", :role => "form"}
+  .controls
   = render 'shared/error_messages'
   .form-group
     = w.label t("word_name")
@@ -11,12 +12,14 @@
     - categories = Category.where('type_de' => 'syntax')
     = w.label t("word_syntactical_category")
     = w.select :syntactical_category, options_for_select(categories.collect{|c| [c.name_de, c.id]})
-  .field
     = w.label t("word_semantical_category")
-    %br
-      %span
-        - categories = Category.where(type_de: 'semantical')
-        = select_tag 'word[semantical_categories_ids][]', options_for_select( categories.collect{|c| [c.name_de, c.id]}, { include_blank: true})
+    - categories = Category.where(type_de: 'semantical')
+    .input-append
+      = select_tag 'word[semantical_categories_ids][]', options_for_select( categories.collect{|c| [c.name_de, c.id]}, { include_blank: true}), class: 'category-select span2', id: 'appendedInputButton'
+    %button.btn.btn-default{:type => "button", :id => "add"}
+      %span.fa.fa-plus
+    %button.btn.btn-default{type: 'button', id: 'remove'}
+      %span.fa.fa-minus
   %br
   .btn.btn-primary.btn-block
     = w.submit t("save"), :class => 'no-border'
@@ -25,8 +28,3 @@
   .col-md-2.col-md-offset-5
     %a.btn.btn-primary.btn-block{:href => words_path, :role => "button"}
       =t('back')
-
-
-:javascript
-  var listEntry = "<span>#{j select_tag 'word[semantical_categories_ids][]', options_for_select(Category.all.collect{|c| [c.name_de,c.id]}, { include_blank: true})}"
-  + "#{j image_tag '/images/icons/bullet_toggle_minus.png', :title =>'delete', :onclick => '$(this).closest(\'span\').remove()', :class => 'delete_button_array_list'}</span>";

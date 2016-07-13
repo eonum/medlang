@@ -18,5 +18,6 @@
 //= require nprogress
 //= require nprogress-turbolinks
 //= require turboboost
+//= require dynamic_fields
 //= require_self
-//= require_tree .
+//= require_
