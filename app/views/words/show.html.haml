@@ -1,39 +1,39 @@
 .row
-  .col-lg-10.col-xs-10.flash-card-top.rounded-top-left
+  .col-lg-12.col-xs-12.flash-card-top.rounded-top-left.rounded-top-right
     %h1
       = @word.name
-  .col-lg-2.col-xs-2.flash-card-top.rounded-top-right
-    %h1.pull-right
-      %a{:href => words_path}
-        %i.fa.fa-angle-left{:style => 'color: black;', :title => t('back')}
-      %a{:href => edit_word_path(@word)}
-        %i.fa.fa-pencil-square-o{:style => 'color: black;', :title => t('edit')}
+
+      %span.pull-right
+        %a{:href => words_path}
+          %i.fa.fa-angle-left{:style => 'color: black;', :title => t('back')}
+        %a{:href => edit_word_path(@word)}
+          %i.fa.fa-pencil-square-o{:style => 'color: black;', :title => t('edit')}
 
 .row
-  .col-lg-12.flash-card-content
+  .col-lg-12.col-xs-12.flash-card-content
     = @word.description
 .row.border-between
-  .col-lg-6.flash-card-sub-heading.border-right
+  .col-lg-6.col-xs-6.flash-card-sub-heading.border-right
     %h4
       = t('word_syntactical_category')
-  .col-lg-6.flash-card-sub-heading
+  .col-lg-6.col-xs-6.flash-card-sub-heading
     %h4
       = t('word_semantical_category')
 .row
-  .col-lg-6.flash-card-content.border-right.rounded-bottom-left
+  .col-lg-6.col-xs-6.flash-card-content.border-right.rounded-bottom-left
     -if params[:locale] == 'de'
       = @word.syntactical_category['name_de']
     -else
       = @word.syntactical_category['name_en']
 
-  .col-lg-6.flash-card-content.rounded-bottom-right
+  .col-lg-6.col-xs-6.flash-card-content.rounded-bottom-right
     /this part is IMO ugly, but at the moment i can only save the id of the categories as an string, ObjectIDs would be better => have to look at words/_form.html.haml
     - @word['semantical_categories_ids'].each do |category_ids|
       - Category.where(id: category_ids).each do |c|
         = c.name_de
         %br
 .row
-  .col-lg-12
+  .col-lg-12.col-xs-12
     %br
     - if @word.id != Word.asc(:id).first
       = link_to Word.get_previous_word(@word) do
