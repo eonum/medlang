@@ -61,6 +61,18 @@ h4 {
 
 /* Grid system
 -------------------------------------------------- */
+/* this keept the divs at the same size */
+.row {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display:         flex;
+}
+.row > [class*='col-'] {
+  display: flex;
+  flex-direction: column;
+}
+/* rounded div corners */
 .rounded-top-left {
   border-radius: 20px 0px 0px 0px;
 }
