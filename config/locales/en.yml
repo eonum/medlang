@@ -31,6 +31,8 @@ en:
   word_syntactical_category: "Syntax Category"
   word_semantical_category: "Semantical Category"
   words_overview: 'Words'
+  word_add_category: 'add category'
+
 
   #general stuff
   save: "save"

@@ -31,6 +31,7 @@ de:
   word_syntactical_category: "Syntax-Kategorie"
   word_semantical_category: "Semantische Kategorie/en"
   words_overview: 'Übersicht Wörter'
+  word_add_category: 'Kategory hinzufügen'
 
 
   #general stuff
