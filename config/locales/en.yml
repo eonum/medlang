@@ -25,13 +25,14 @@ en:
   word_update_success: "The word has been successfully updated"
   delete_confirmation: "Are you sure?"
 
-  #word view
+  #word
   word_name: "Name"
   word_description: "Description"
   word_syntactical_category: "Syntax Category"
   word_semantical_category: "Semantical Category"
   words_overview: 'Words'
   word_add_category: 'add category'
+  word_warning_already_exists: 'This word already exists!'
 
 
   #general stuff

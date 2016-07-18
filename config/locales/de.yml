@@ -25,13 +25,14 @@ de:
   word_update_success: "Das Wort wurde erfolgreich geändert"
   delete_confirmation: "Wirklich löschen?"
 
-  #word view part
+  #word
   word_name: "Name"
   word_description: "Beschreibung"
   word_syntactical_category: "Syntax-Kategorie"
   word_semantical_category: "Semantische Kategorie/en"
   words_overview: 'Übersicht Wörter'
   word_add_category: 'Kategory hinzufügen'
+  word_warning_already_exists: 'Dieses Wort gibt es bereits!'
 
 
   #general stuff
