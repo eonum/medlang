@@ -10,7 +10,7 @@ class Word
 
 
   # OPTIMIZE: if the word allready exist, it should ask the user if he wants to edit the existing word.
-  validates :name, uniqueness: {message: t('word_warning_already_exists')}
+  validates :name, uniqueness: {message: "t('word_warning_already_exists')"}
 
   validates :name, presence: true;
   validates :description, presence: true;
