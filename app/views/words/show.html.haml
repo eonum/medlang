@@ -25,13 +25,15 @@
       = @word.syntactical_category['name_de']
     -else
       = @word.syntactical_category['name_en']
-
   .col-lg-6.col-xs-6.flash-card-content.rounded-bottom-right
     /this part is IMO ugly, but at the moment i can only save the id of the categories as an string, ObjectIDs would be better => have to look at words/_form.html.haml
     - @word['semantical_categories_ids'].each do |category_ids|
       - Category.where(id: category_ids).each do |c|
         = c.name_de
         %br
+    / idea for replacing the the line of code above but not working at the moment
+      - @word.semantical_categories_ids.each do |category|
+        = category.name_de
 .row
   .col-lg-12.col-xs-12
     %br
