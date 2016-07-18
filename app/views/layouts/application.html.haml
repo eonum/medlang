@@ -46,10 +46,10 @@
                 %li= link_to 'Francais', params.merge({ locale: :fr })
                 %li= link_to 'Italiano', params.merge({ locale: :it })
                 %li= link_to 'English', params.merge({ locale: :en })
-    -# Content form different pages start here
+    / Content form different pages start here
     .container
       = yield
-    -#Footer content
+    / Footer content
     .navbar.navbar-default.navbar-fixed-bottom
       .container-fluid
         .row.spacer
