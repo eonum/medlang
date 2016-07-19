@@ -42,6 +42,7 @@ en:
   category_syntactical: 'syntactics'
   category_new: 'New category'
   category_edit: 'Edit category'
+  category_overview: 'Categories'
 
   #general stuff
   save: "save"
