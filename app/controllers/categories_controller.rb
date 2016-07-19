@@ -1,4 +1,6 @@
 class CategoriesController < ApplicationController
+  helper MultiLanguageText
+
   def index
     @category = Category.all
   end
