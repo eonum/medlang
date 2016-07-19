@@ -40,6 +40,8 @@ de:
   category_type: 'Typ'
   category_semantical: 'Semantik'
   category_syntactical: 'Syntax'
+  category_new: 'Neue Kategorie'
+  category_edit: 'Kategorie bearbeiten'
 
 
 

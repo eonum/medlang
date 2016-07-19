@@ -40,7 +40,7 @@ class CategoriesController < ApplicationController
   end
 
   def category_params
-    allow = [:name_de, :name_en, :description_de, :description_en, :type_de, :type_en, :word_ids]
+    allow = [:name_de, :name_en, :description_de, :description_en, :category_type, :word_ids]
     params.require(:category).permit(allow)
   end
 end

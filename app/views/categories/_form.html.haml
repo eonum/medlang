@@ -1,0 +1,16 @@
+=form_for @category do |c|
+  = c.label t('category_name')
+  %br
+  = c.text_field :name_de
+  %br
+    = c.label t('category_description')
+    %br
+    = c.text_area :description_de
+  %br
+    = c.label t('category_type')
+    %br
+      / the purpose of this hash is, that the use should see the values in his/her language, but in the DB there should be only the english values
+      - category_types = [{"signifier" => t('category_semantical'), "value" => 'semantic'}, {"signifier" => t('category_syntactical'), "value" => 'syntactic'}]
+      = c.select :category_type, options_for_select(category_types.collect {|category_type| [category_type["signifier"], category_type["value"]]}, c.object.category_type)
+  %br
+    = c.submit

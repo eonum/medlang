@@ -1,15 +1,8 @@
-%h2 New category
-=form_for @category do |c|
-  = c.label t('category_name')
-  %br
-  = c.text_field :name_de
-  %br
-    = c.label t('category_description')
-    %br
-    = c.text_area :description_de
-  %br
-    = c.label t('category_type')
-    %br
-    = c.select :category_type, [t('category_semantical'), t('category_syntactical')]
-  %br
-    = c.submit t('save')
+.row
+  .col-md-6.col-md-offset-3
+    %h2
+      = t('category_edit')
+
+    = render 'form'
+
+    = link_to 'Back', words_path

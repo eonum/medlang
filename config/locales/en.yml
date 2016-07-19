@@ -40,6 +40,8 @@ en:
   category_type: 'type'
   category_semantical: 'semantics'
   category_syntactical: 'syntactics'
+  category_new: 'New category'
+  category_edit: 'Edit category'
 
   #general stuff
   save: "save"
