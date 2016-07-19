@@ -34,6 +34,14 @@ de:
   word_add_category: 'Kategory hinzufügen'
   word_warning_already_exists: 'Dieses Wort gibt es bereits!'
 
+  #category
+  category_name: 'Name'
+  category_description: 'Beschreibung'
+  category_type: 'Typ'
+  category_semantical: 'Semantik'
+  category_syntactical: 'Syntax'
+
+
 
   #general stuff
   save: "speichern"

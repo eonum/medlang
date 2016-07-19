@@ -3,9 +3,12 @@
   %table.table
     %thead
       %tr
-        %th Name
-        %th Description
-        %th Type
+        %th
+          = t('category_name')
+        %th
+          = t('category_description')
+        %th
+          = t('category type')
     %tbody
       -for c in @category
         %tr
@@ -14,7 +17,7 @@
           %td
             = c.description_de
           %td
-            = c.type_de
+            = c.category_type
           %td
             =link_to 'Edit', edit_category_path(c)
           %td

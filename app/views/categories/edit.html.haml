@@ -1,15 +1,15 @@
 %h2 New category
 =form_for @category do |c|
-  = c.label 'Category'
+  = c.label t('category_name')
   %br
   = c.text_field :name_de
   %br
-    = c.label 'Description'
+    = c.label t('category_description')
     %br
     = c.text_area :description_de
   %br
-    = c.label "Type"
+    = c.label t('category_type')
     %br
-    = c.text_field :type_de
+    = c.select :category_type, [t('category_semantical'), t('category_syntactical')]
   %br
-    = c.submit
+    = c.submit t('save')

@@ -34,6 +34,12 @@ en:
   word_add_category: 'add category'
   word_warning_already_exists: 'This word already exists!'
 
+  #category
+  category_name: 'Name'
+  category_description: 'Description'
+  category_type: 'type'
+  category_semantical: 'semantics'
+  category_syntactical: 'syntactics'
 
   #general stuff
   save: "save"
