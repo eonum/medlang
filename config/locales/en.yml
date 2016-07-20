@@ -38,11 +38,13 @@ en:
   category_name: 'Name'
   category_description: 'Description'
   category_type: 'type'
-  category_semantical: 'semantics'
-  category_syntactical: 'syntactics'
   category_new: 'New category'
   category_edit: 'Edit category'
   category_overview: 'Categories'
+  category: 'Category:'
+  category_semantic: 'Semantics'
+  category_syntactic: 'Syntax'
+
 
   #general stuff
   save: "save"

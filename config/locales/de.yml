@@ -38,11 +38,12 @@ de:
   category_name: 'Name'
   category_description: 'Beschreibung'
   category_type: 'Typ'
-  category_semantical: 'Semantik'
-  category_syntactical: 'Syntax'
   category_new: 'Neue Kategorie'
   category_edit: 'Kategorie bearbeiten'
   category_overview: 'Übersicht aller Kategorien'
+  category: 'Kategorie:'
+  category_semantic: 'Semantik'
+  category_syntactic: 'Syntax'
 
 
 

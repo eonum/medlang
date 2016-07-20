@@ -15,7 +15,7 @@
     = c.label t('category_type')
     %br
       / the purpose of this hash is, that the user should see the values in his/her language, but in the DB there should be only the english values
-      - category_types = [{"signifier" => t('category_semantical'), "value" => 'semantic'}, {"signifier" => t('category_syntactical'), "value" => 'syntactic'}]
+      - category_types = [{"signifier" => t('category_semantic'), "value" => 'semantic'}, {"signifier" => t('category_syntactic'), "value" => 'syntactic'}]
       = c.select :category_type, options_for_select(category_types.collect {|category_type| [category_type["signifier"], category_type["value"]]}, c.object.category_type)
   %br
     = c.submit
