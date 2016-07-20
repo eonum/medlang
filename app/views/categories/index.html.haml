@@ -7,10 +7,11 @@
         .panel.panel-default
           .panel-heading
             = c.name locale
-            .btn.btn-default.btn-xs.pull-right
-              =link_to t('edit'), edit_category_path(c)
-            .btn.btn-default.btn-xs.pull-right
-              = link_to t('delete'), c, method: :delete, data: { confirm: t('confirmation_question') }
+            .pull-right
+              .btn.btn-default.btn-xs
+                = link_to content_tag(:i, nil, class: 'fa fa-pencil', title: t('edit')), edit_category_path(c)
+              .btn.btn-default.btn-xs
+                = link_to content_tag(:i, nil, class: 'fa fa-times', title: t('delete')),c, method: :delete, data: {confirm: t('confirmation_question')}
           .panel-body
             %p
               %strong
