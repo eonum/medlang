@@ -21,10 +21,9 @@
     %button.btn.btn-default{type: 'button', id: 'remove'}
       %span.fa.fa-minus
   %br
-  .btn.btn-primary.btn-block
-    = w.submit t("save"), :class => 'no-border'
-  %br
-.row
-  .col-md-2.col-md-offset-5
-    %a.btn.btn-primary.btn-block{:href => words_path, :role => "button"}
+  %button.btn.btn-default{:type => "submit"}
+    %i.fa.fa-floppy-o
+      = t('save')
+  %a.btn.btn-default.pull-right{:href => words_path, :role => "button"}
+    %i.fa.fa-times
       =t('back')
