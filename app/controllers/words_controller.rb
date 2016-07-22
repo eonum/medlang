@@ -1,4 +1,5 @@
 class WordsController < ApplicationController
+  helper MultiLanguageText
 
   def index
     @word = Word.all
@@ -55,7 +56,7 @@ class WordsController < ApplicationController
   end
 
   def word_params
-    allow = [:name, :description, :syntactical_category, :semantical_categories_ids => []]
+    allow = [:name_de, :name_en, :description_de, :description_en, :syntactical_category, :semantical_categories_ids => []]
     params.require(:word).permit(allow)
   end
 end
