@@ -1,7 +1,7 @@
 .row
-  .col-lg-12.col-xs-12.flash-card-top.rounded-top-left.rounded-top-right
+  .col-lg-12.col-xs-12.flash-card-top.rounded-top-right.rounded-top-left
     %h1
-      = @word.name
+      = @word.name locale
 
       %span.pull-right
         %a{:href => words_path}
@@ -11,7 +11,7 @@
 
 .row
   .col-lg-12.col-xs-12.flash-card-content
-    = @word.description
+    = @word.description locale
 .row.border-between
   .col-lg-6.col-xs-6.flash-card-sub-heading.border-right
     %h4
@@ -21,10 +21,10 @@
       = t('word_semantical_category')
 .row
   .col-lg-6.col-xs-6.flash-card-content.border-right.rounded-bottom-left
-    -if params[:locale] == 'de'
-      = @word.syntactical_category['name_de']
-    -else
+    -if locale == 'en'
       = @word.syntactical_category['name_en']
+    -else
+      = @word.syntactical_category['name_de']
   .col-lg-6.col-xs-6.flash-card-content.rounded-bottom-right
     /this part is IMO ugly, but at the moment i can only save the id of the categories as an string, ObjectIDs would be better => have to look at words/_form.html.haml
     - @word['semantical_categories_ids'].each do |category_ids|
@@ -32,8 +32,8 @@
         = c.name_de
         %br
     / idea for replacing the the line of code above but not working at the moment
-      #- @word.semantical_categories_ids.each do |category|
-      #  = category.name_de
+    /- @word.semantical_categories_ids.each do |category|
+    /  = category.name_de
 .row
   .col-lg-12.col-xs-12
     %br

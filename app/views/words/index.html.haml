@@ -9,14 +9,15 @@
 .row
   .col-lg-12
     -for w in @word
-      .panel.panel-default
-        .panel-heading
-          = w.name
-          .btn.btn-default.btn-xs.pull-right
-            = link_to t('show'), word_path(w), :method => :get
-          .btn.btn-default.btn-xs.pull-right
-            =link_to t('edit'), edit_word_path(w)
-          .btn.btn-default.btn-xs.pull-right
-            = link_to t('delete'), w, method: :delete, data: { confirm: t('confirmation_question') }
-        .panel-body
-          = w.description
+      -if (w.name locale).to_s.empty? == false
+        .panel.panel-default
+          .panel-heading
+            = w.name locale
+            .btn.btn-default.btn-xs.pull-right
+              = link_to t('show'), word_path(w), :method => :get
+            .btn.btn-default.btn-xs.pull-right
+              =link_to t('edit'), edit_word_path(w)
+            .btn.btn-default.btn-xs.pull-right
+              = link_to t('delete'), w, method: :delete, data: { confirm: t('confirmation_question') }
+          .panel-body
+            = w.description locale
