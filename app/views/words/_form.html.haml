@@ -9,11 +9,11 @@
     = w.label t("word_description")
     = w.text_area :description, class: "form-control"
   .field
-    - categories = Category.where('type_de' => 'syntax')
+    - categories = Category.where(:name_de.exists => true)
     = w.label t("word_syntactical_category")
     = w.select :syntactical_category, options_for_select(categories.collect{|c| [c.name_de, c.id]})
     = w.label t("word_semantical_category")
-    - categories = Category.where(type_de: 'semantical')
+    - categories = Category.where(category_type: 'semantic')
     .input-append
       = select_tag 'word[semantical_categories_ids][]', options_for_select( categories.collect{|c| [c.name_de, c.id]}, { include_blank: true}), class: 'category-select span2', id: 'appendedInputButton'
     %button.btn.btn-default{:type => "button", :id => "add"}
