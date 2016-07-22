@@ -23,6 +23,10 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 #font-awesome-rails provides the Font-Awesome web fonts and stylesheets as a Rails engine for use with the asset pipeline.
 gem "font-awesome-rails"
 
+# for navigation through pages
+gem 'will_paginate', '~> 3.1.0'
+gem 'will_paginate_mongoid'
+
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
 gem 'spring',        group: :development
 
