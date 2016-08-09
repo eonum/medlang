@@ -194,7 +194,7 @@ DEPENDENCIES
   jbuilder
   jquery-rails
   less-rails
-  mongoid
+  mongoid (~> 5.0)
   nprogress-rails
   rails
   ruby-progressbar
