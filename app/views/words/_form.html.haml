@@ -15,20 +15,22 @@
     - categories = Category.where(:name_de.exists => true).all.map { |category| [category.name_de, category.id] }
     = w.label t("word_syntactical_category")
     = w.select :syntactical_category, options_for_select(categories, @word.syntactical_category_id.to_s)
+  .field
     = w.label t("word_semantical_category")
     .input-append
       - @word['semantical_categories_ids'] = [''] if !@word['semantical_categories_ids'].is_a? Array
       - @word['semantical_categories_ids'].each do |entry|
         = select_tag 'word[semantical_categories_ids][]', options_for_select(Category.where(category_type: 'semantic').where(:name_de.exists => true).collect{|c| [c.name_de, c.id]}, entry)
 
-  %button.btn.btn-default{:type => "button", :id => "add"}
+  %button.btn.btn-default{type: "button", id: 'add'}
     %span.fa.fa-plus
-    %button.btn.btn-default{type: 'button', id: 'remove'}
+    %button.btn.btn-default.pull-right{type: 'button', id: 'remove'}
       %span.fa.fa-minus
   %br
-  %button.btn.btn-default{:type => "submit"}
+  %br
+  %button.btn.btn-default{type: "submit"}
     %i.fa.fa-floppy-o
       = t('save')
-  %a.btn.btn-default.pull-right{:href => words_path, :role => "button"}
+  %a.btn.btn-default.pull-right{href: words_path, role: "button"}
     %i.fa.fa-times
       =t('back')
