@@ -3,6 +3,7 @@ class WordsController < ApplicationController
 
   def index
     @words = Word.all
+    @words = @words.where({:"name_#{locale}".exists => true}).paginate(:page => params[:page], :per_page => 15)
   end
 
   def show

@@ -8,17 +8,22 @@
 
 .row
   .col-lg-12
+    .center-block
+      .digg_pagination
+        = will_paginate @words
     -for w in @words
-      -if (w.name locale).to_s.empty? == false
-        .panel.panel-default
-          .panel-heading
-            = w.name locale
-            .btn.btn-default.btn-xs.pull-right
-              = link_to t('show'), word_path(w), :method => :get
-            .btn.btn-default.btn-xs.pull-right
-              =link_to t('edit'), edit_word_path(w)
-              / todo use ajax to remove word from DB
-            .btn.btn-default.btn-xs.pull-right
-              = link_to t('delete'), w, method: :delete, data: { confirm: t('confirmation_question') }
-          .panel-body
-            = w.description locale
+      .panel.panel-default
+        .panel-heading
+          = w.name locale
+          .btn.btn-default.btn-xs.pull-right
+            = link_to t('show'), word_path(w), :method => :get
+          .btn.btn-default.btn-xs.pull-right
+            =link_to t('edit'), edit_word_path(w)
+          / todo use ajax to remove word from DB
+          .btn.btn-default.btn-xs.pull-right
+            = link_to t('delete'), w, method: :delete, data: { confirm: t('confirmation_question') }
+        .panel-body
+          = w.description locale
+    .center-block
+      .digg_pagination
+        = will_paginate @words

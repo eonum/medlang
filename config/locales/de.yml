@@ -73,6 +73,9 @@ de:
   country: ''
   email: 'E-Mail:'
 
+  will_paginate:
+    previous_label: <i class="fa fa-angle-left"></i>
+    next_label: <i class="fa fa-angle-right"></i>
 
 
 
