@@ -66,8 +66,8 @@ en:
 
   #footer
   company: 'eonum Inc.'
-  zip: 'CH-3008'
   city: 'Bern'
+  country: 'Switzerland'
   email: 'email:'
 
 

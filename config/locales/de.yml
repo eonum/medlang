@@ -69,8 +69,8 @@ de:
   #footer
   company: 'eonum AG'
   street: 'Effingerstrasse 55'
-  zip: '3008'
   city: 'Bern'
+  country: ''
   email: 'E-Mail:'
 
 
