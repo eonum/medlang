@@ -2,7 +2,7 @@ class WordsController < ApplicationController
   helper MultiLanguageText
 
   def index
-    @word = Word.all
+    @words = Word.all
   end
 
   def show
