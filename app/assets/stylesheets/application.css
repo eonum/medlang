@@ -13,6 +13,7 @@
  *= require bootstrap_and_overrides
  *= require nprogress_and_overrides
  *= require font-awesome
+ *= require pagiante
  *= require_tree .
  *= require_self
 
