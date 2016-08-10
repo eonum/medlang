@@ -19,5 +19,6 @@
 //= require nprogress-turbolinks
 //= require turboboost
 //= require dynamic_fields
+//= require goto_first_input_form.js
 //= require_self
 //= require_
