@@ -20,7 +20,7 @@
     .input-append
       - @word['semantical_categories_ids'] = [''] if !@word['semantical_categories_ids'].is_a? Array
       - @word['semantical_categories_ids'].each do |entry|
-        = select_tag 'word[semantical_categories_ids][]', options_for_select(Category.where(category_type: 'semantic').where(:"name_#{locale}".exists => true).collect{|c| [c.name(locale), c.id]}, entry)
+        = select_tag 'word[semantical_categories_ids][]', options_for_select(Category.where(category_type: 'semantic').where(:"name_#{locale}".exists => true).collect{|c| [c.name(locale), c.id]}, entry), :include_blank => true
 
   %button.btn.btn-default{type: "button", id: 'add'}
     %span.fa.fa-plus
