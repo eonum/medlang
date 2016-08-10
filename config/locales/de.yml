@@ -26,6 +26,7 @@ de:
   delete_confirmation: "Wirklich löschen?"
 
   #word
+  word_new: 'Neues Wort'
   word_name: "Name"
   word_description: "Beschreibung"
   word_syntactical_category: "Syntax-Kategorie"

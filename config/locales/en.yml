@@ -26,6 +26,7 @@ en:
   delete_confirmation: "Are you sure?"
 
   #word
+  word_new: 'New Word'
   word_name: "Name"
   word_description: "Description"
   word_syntactical_category: "Syntax Category"
