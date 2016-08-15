@@ -4,9 +4,8 @@ class WordsController < ApplicationController
 
   def index
     @words = Word.where({:"name_#{locale}".exists => true})
+    # natural_sort_by is needed because otherwise you get in trouble with the german umlauts
     @words = @words.natural_sort_by{|word| word.name_de}.paginate(:page => params[:page], :per_page => 15)
-
-
   end
 
   def show
