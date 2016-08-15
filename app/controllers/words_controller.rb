@@ -1,9 +1,12 @@
 class WordsController < ApplicationController
+  require 'will_paginate/array'
   helper MultiLanguageText
 
   def index
-    @words = Word.all
-    @words = @words.where({:"name_#{locale}".exists => true}).paginate(:page => params[:page], :per_page => 15)
+    @words = Word.where({:"name_#{locale}".exists => true})
+    @words = @words.natural_sort_by{|word| word.name_de}.paginate(:page => params[:page], :per_page => 15)
+
+
   end
 
   def show
@@ -59,5 +62,20 @@ class WordsController < ApplicationController
   def word_params
     allow = [:name_de, :name_en, :description_de, :description_en, :syntactical_category, :semantical_categories_ids => []]
     params.require(:word).permit(allow)
+  end
+
+  def remove_vowels(array)
+    array.each do |arr|
+      arr.name_de.gsub(/[äöü]/) do |match|
+        case match
+          when "ä"
+            'ae'
+          when "ö"
+            'oe'
+          when "ü"
+            'ue'
+        end
+      end
+    end
   end
 end
