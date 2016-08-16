@@ -5,11 +5,13 @@ class WordsController < ApplicationController
   def index
     @words = Word.where({:"name_#{locale}".exists => true})
     # natural_sort_by is needed because otherwise you get in trouble with the german umlauts
-    @words = @words.natural_sort_by{|word| word.name_de}.paginate(:page => params[:page], :per_page => 15)
+    @words = @words.natural_sort_by{|word| word.name locale}.paginate(:page => params[:page], :per_page => 15)
   end
 
   def show
     @word = Word.find(params[:id])
+    @words = Word.where({:"name_#{locale}".exists => true})
+    @words = @words.natural_sort_by{|word| word.name locale}.paginate(:page => params[:page], :per_page => 1)
   end
 
   def new
@@ -63,18 +65,4 @@ class WordsController < ApplicationController
     params.require(:word).permit(allow)
   end
 
-  def remove_vowels(array)
-    array.each do |arr|
-      arr.name_de.gsub(/[äöü]/) do |match|
-        case match
-          when "ä"
-            'ae'
-          when "ö"
-            'oe'
-          when "ü"
-            'ue'
-        end
-      end
-    end
-  end
 end
