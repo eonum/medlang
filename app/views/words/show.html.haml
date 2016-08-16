@@ -29,18 +29,8 @@
     /this part is IMO ugly, but at the moment i can only save the id of the categories as an string, ObjectIDs would be better => have to look at words/_form.html.haml
     - @word['semantical_categories_ids'].each do |category_ids|
       - Category.where(id: category_ids).each do |c|
-        = c.name_de
+        = c.name locale
         %br
     / idea for replacing the the line of code above but not working at the moment
-    /- @word.semantical_categories_ids.each do |category|
-    /  = category.name_de
-.row
-  .col-lg-12.col-xs-12
-    %br
-    - if @word.id != Word.asc(:id).first
-      = link_to Word.get_previous_word(@word) do
-        %i.fa.fa-step-backward{:title => t('backward')}
-
-    - if @word.id != Word.asc(:id).last
-      = link_to Word.get_next_word(@word) do
-        %i.fa.fa-step-forward.pull-right{:title => t('forward')}
+    /- @word['semantical_categories_ids'].each do |category|
+    /  = category['name locale']
