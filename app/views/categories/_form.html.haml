@@ -1,20 +1,19 @@
 =form_for @category do |c|
   = c.label t('category_name')
-  -if locale.to_s =='en'
-    = c.text_field :name_en, class: 'form-control'
-  -else
-    = c.text_field :name_de, class: 'form-control'
+  = c.text_field :name, class: 'form-control'
+
   %br
   = c.label t('category_description')
-  -if locale.to_s =='en'
-    = c.text_field :description_en, class: 'form-control'
-  -else
-    = c.text_field :description_de, class: 'form-control'
+  = c.text_field :description, class: 'form-control'
   %br
-    = c.label t('category_type')
-    / the purpose of this hash is, that the user should see the values in his/her language, but in the DB there should be only the english values
-    - category_types = [{"signifier" => t('category_semantic'), "value" => 'semantic'}, {"signifier" => t('category_syntactic'), "value" => 'syntactic'}]
-    = c.select :category_type, options_for_select(category_types.collect {|category_type| [category_type["signifier"], category_type["value"]]}, c.object.category_type)
+  = c.label t('category_type')
+  / the purpose of this hash is, that the user should see the values in his/her language, but in the DB there should be only the english values
+  - category_types = [{"signifier" => t('category_semantic'), "value" => 'semantic'}, {"signifier" => t('category_syntactic'), "value" => 'syntactic'}]
+  = c.select :category_type, options_for_select(category_types.collect {|category_type| [category_type["signifier"], category_type["value"]]}, c.object.category_type)
+
+  - available_languages = ['de', 'en']
+  = c.label t('language')
+  = c.select :language, available_languages
 
   %button.btn.btn-default{:type => "submit"}
     %i.fa.fa-floppy-o

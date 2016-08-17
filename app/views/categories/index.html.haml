@@ -1,21 +1,20 @@
 %h1
   = t('category_overview')
 -for c in @category
-  -if (c.name locale).to_s.empty? == false
-    .row
-      .col-lg-12
-        .panel.panel-default
-          .panel-heading
-            = c.name locale
-            .pull-right
-              .btn.btn-default.btn-xs
-                = link_to content_tag(:i, nil, class: 'fa fa-pencil', title: t('edit')), edit_category_path(c)
-              .btn.btn-default.btn-xs
-                = link_to content_tag(:i, nil, class: 'fa fa-times', title: t('delete')),c, method: :delete, data: {confirm: t('confirmation_question')}
-          .panel-body
-            %p
-              %strong
-                = t('category')
-                /this takes the value from the category_type and translate it into the desired language
-                = t("category_#{c.category_type}")
-            = c.description locale
+  .row
+    .col-lg-12
+      .panel.panel-default
+        .panel-heading
+          = c.name
+          .pull-right
+            .btn.btn-default.btn-xs
+              = link_to content_tag(:i, nil, class: 'fa fa-pencil', title: t('edit')), edit_category_path(c)
+            .btn.btn-default.btn-xs
+              = link_to content_tag(:i, nil, class: 'fa fa-times', title: t('delete')),c, method: :delete, data: {confirm: t('confirmation_question')}
+        .panel-body
+          %p
+            %strong
+              = t('category')
+              /this takes the value from the category_type and translate it into the desired language
+              = t("category_#{c.category_type}")
+          = c.description

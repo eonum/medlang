@@ -2,7 +2,7 @@ class CategoriesController < ApplicationController
   helper MultiLanguageText
 
   def index
-    @category = Category.all
+    @category = Category.where(language: locale)
   end
 
   def show
@@ -42,7 +42,7 @@ class CategoriesController < ApplicationController
   end
 
   def category_params
-    allow = [:name_de, :name_en, :description_de, :description_en, :category_type, :word_ids]
+    allow = [:name,:description, :category_type, :language]
     params.require(:category).permit(allow)
   end
 end
