@@ -9,8 +9,6 @@ class WordsController < ApplicationController
 
   def show
     @word = Word.find(params[:id])
-    @words = Word.where(language: locale)
-    @words = @words.natural_sort_by{|word| word.name}.paginate(:page => params[:page], :per_page => 1)
   end
 
   def new
