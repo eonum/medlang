@@ -31,7 +31,7 @@ de:
   word_description: "Beschreibung"
   word_syntactical_category: "Syntax-Kategorie"
   word_semantical_category: "Semantische Kategorie/en"
-  word_language: 'Sprache'
+
   words_overview: 'Übersicht Wörter'
   word_add_category: 'Kategory hinzufügen'
   word_warning_already_exists: 'Dieses Wort gibt es bereits!'
@@ -53,6 +53,7 @@ de:
   save: "speichern"
   edit: "bearbeiten"
   edit_capitalized: 'Bearbeiten'
+  language: 'Sprache'
 
   delete: "löschen"
   back: "zurück"

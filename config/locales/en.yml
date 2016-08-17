@@ -59,6 +59,8 @@ en:
   backward: 'back'
   forward: 'next'
   confirmation_question: 'Are you sure?'
+  language: 'Language'
+
 
   #navbar section
   about: "About us"
