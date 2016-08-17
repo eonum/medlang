@@ -1,17 +1,16 @@
 class WordsController < ApplicationController
   require 'will_paginate/array'
-  helper MultiLanguageText
 
   def index
-    @words = Word.where({:"name_#{locale}".exists => true})
+    @words = Word.where(language: locale)
     # natural_sort_by is needed because otherwise you get in trouble with the german umlauts
-    @words = @words.natural_sort_by{|word| word.name locale}.paginate(:page => params[:page], :per_page => 15)
+    @words = @words.natural_sort_by{|word| word.name}.paginate(:page => params[:page], :per_page => 15)
   end
 
   def show
     @word = Word.find(params[:id])
-    @words = Word.where({:"name_#{locale}".exists => true})
-    @words = @words.natural_sort_by{|word| word.name locale}.paginate(:page => params[:page], :per_page => 1)
+    @words = Word.where(language: locale)
+    @words = @words.natural_sort_by{|word| word.name}.paginate(:page => params[:page], :per_page => 1)
   end
 
   def new
@@ -61,7 +60,7 @@ class WordsController < ApplicationController
   end
 
   def word_params
-    allow = [:name_de, :name_en, :description_de, :description_en, :syntactical_category, :semantical_categories_ids => []]
+    allow = [:name, :description, :syntactical_category, :language, :semantical_categories_ids => []]
     params.require(:word).permit(allow)
   end
 

@@ -1,16 +1,12 @@
 = form_for @word do |w|
-  %h2
-    -print @word.syntactical_category
-    =@word.name locale
   .controls
-  = render 'shared/error_messages'
+    = render 'shared/error_messages'
   .form-group
     = w.label t("word_name")
-    = w.text_field "name_#{locale}", class: "form-control" # with "name_#{locale}" i don't need to create a if loop for the languages because it takes the endings automatically
-  %br
+    = w.text_field :name, class: "form-control"
   .field
     = w.label t("word_description")
-    = w.text_area "description_#{locale}", class: "form-control"
+    = w.text_area :description, class: "form-control"
   .field
     - categories = Category.where(:name_de.exists => true).all.map { |category| [category.name_de, category.id] }
     = w.label t("word_syntactical_category")
@@ -27,6 +23,11 @@
     %button.btn.btn-default.pull-right{type: 'button', id: 'remove'}
       %span.fa.fa-minus
   %br
+  %br
+  .field
+    = w.label t('word_language')
+    - available_languages = ['de', 'en']
+    = w.select :language, available_languages
   %br
   %button.btn.btn-default{type: "submit"}
     %i.fa.fa-floppy-o

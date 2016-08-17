@@ -31,6 +31,8 @@ en:
   word_description: "Description"
   word_syntactical_category: "Syntax Category"
   word_semantical_category: "Semantical Category"
+  word_language: 'Language'
+
   words_overview: 'Words'
   word_add_category: 'add category'
   word_warning_already_exists: 'This word already exists!'
@@ -50,6 +52,7 @@ en:
   #general stuff
   save: "save"
   edit: "edit"
+  edit_capitalized: 'Edit'
   delete: "delete"
   back: "back"
   show: 'show'
