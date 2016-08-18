@@ -14,7 +14,7 @@
         .panel-body
           %p
             %strong
-              = t('category')
+              = t('category_type')+ ': '
               /this takes the value from the category_type and translate it into the desired language
               = t("category_#{c.category_type}")
           = c.description
