@@ -3,8 +3,8 @@
 .row
   / this if for later you will cann select, what category you want to see, but need js or that
   .col-lg-12
-    - categories_array = Category.all.map { |category| category.name_de}
-    = select_tag :category_name_de, options_for_select(categories_array), {:onchange => 'this.form.submit()'}
+    - categories_array = Category.where(language: locale).map { |category| category.name}
+    = select_tag :name, options_for_select(categories_array), {:onchange => 'this.form.submit()'}
 
 .row
   .col-lg-12
