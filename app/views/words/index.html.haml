@@ -11,8 +11,10 @@
     .center-block
       .digg_pagination
         = will_paginate @words
+    / this i think this function should be later only visible for admins
+    .pull-right
+      = link_to content_tag(:span, ' ', title: t('export_to_csv'), :class => 'fa fa-download',:aria => {:hidden => "true"}), words_export_path(format: "csv")
 
-    = link_to "Export Data", words_export_path(format: "csv")
     -for w in @words
       .panel.panel-default
         .panel-heading

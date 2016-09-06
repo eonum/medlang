@@ -61,6 +61,7 @@ de:
   backward: 'zurück'
   forward: 'vorwärts'
   confirmation_question: 'Sind Sie sich sicher?'
+  export_to_csv: 'als CSV herunterladen'
 
 
   #navbar section
