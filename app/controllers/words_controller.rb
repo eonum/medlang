@@ -62,4 +62,12 @@ class WordsController < ApplicationController
     params.require(:word).permit(allow)
   end
 
+  def export
+    @words = Word.where(language: locale)
+    time = Time.now
+    respond_to do |format|
+      format.html { redirect_to root_url }
+      format.csv { send_data @words.to_csv, filename: "words-#{time.strftime("%Y/%m/%d/%H/%M/%S")}.csv" }
+    end
+  end
 end

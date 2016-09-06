@@ -11,4 +11,13 @@ class Word
 
   # OPTIMIZE: if the word allready exist, it should ask the user if he wants to edit the existing word.
   validates :name, uniqueness: {message: "t('word_warning_already_exists')"},:allow_blank => true
+
+  def self.to_csv(options = {:col_sep => ";"})
+    CSV.generate(options) do |csv|
+      all.each do |word|
+        values = word.attributes.values
+        csv.add_row values
+      end
+    end
+  end
 end

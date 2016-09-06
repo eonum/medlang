@@ -11,6 +11,8 @@
     .center-block
       .digg_pagination
         = will_paginate @words
+
+    = link_to "Export Data", words_export_path(format: "csv")
     -for w in @words
       .panel.panel-default
         .panel-heading
