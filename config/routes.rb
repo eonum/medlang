@@ -9,8 +9,7 @@ Rails.application.routes.draw do
 
     resources :users
 
-
-
+    resources :learn_sessions
   end
 
   root :to => 'infos#home'

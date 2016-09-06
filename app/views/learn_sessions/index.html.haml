@@ -1,0 +1,19 @@
+%h1 Listing learn_sessions
+
+%table
+  %thead
+    %tr
+      %th
+      %th
+      %th
+
+  %tbody
+    - @learn_sessions.each do |learn_session|
+      %tr
+        %td= link_to 'Show', learn_session
+        %td= link_to 'Edit', edit_learn_session_path(learn_session)
+        %td= link_to 'Destroy', learn_session, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Learn session', new_learn_session_path
