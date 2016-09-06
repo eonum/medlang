@@ -15,6 +15,15 @@ class LearnSessionsController < ApplicationController
   # GET /learn_sessions/new
   def new
     @learn_session = LearnSession.new
+
+    # select random 10 words from the Words stock. Later the user should be able bey themselves to select the amount of words
+    @words = Word.where(language: locale)
+    @learn_session.words = @words.sample(10)
+
+    # all words have to go into the first box. Check the comments in learnSession model for more information
+    @learn_session.box0 = @learn_session.words
+
+    @learn_session.user = current_user
   end
 
   # GET /learn_sessions/1/edit
@@ -70,5 +79,6 @@ class LearnSessionsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def learn_session_params
       params[:learn_session]
+      params.require(:learn_session).permit(:user, :completed, :words => [], :box0 => [], :box1 => [], :box2 => [], :box3 => [], :box4 => [])
     end
 end
