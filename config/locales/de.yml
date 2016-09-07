@@ -47,6 +47,10 @@ de:
   category_semantic: 'Semantik'
   category_syntactic: 'Syntax'
 
+  # learnSession
+  learnSession_start: 'Lerneinheit starten'
+
+
 
 
   #general stuff

@@ -48,6 +48,9 @@ en:
   category_semantic: 'Semantics'
   category_syntactic: 'Syntax'
 
+  # learnSession
+  learnSession_start: 'Start learning session'
+
 
   #general stuff
   save: "save"
