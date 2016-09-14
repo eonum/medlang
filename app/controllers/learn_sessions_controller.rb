@@ -10,20 +10,12 @@ class LearnSessionsController < ApplicationController
   # GET /learn_sessions/1
   # GET /learn_sessions/1.json
   def show
+    @learn_session = LearnSession.find(params[:id])
   end
 
   # GET /learn_sessions/new
   def new
     @learn_session = LearnSession.new
-
-    # select random 10 words from the Words stock. Later the user should be able bey themselves to select the amount of words
-    @words = Word.where(language: locale)
-    @learn_session.words = @words.sample(10)
-
-    # all words have to go into the first box. Check the comments in learnSession model for more information
-    @learn_session.box0 = @learn_session.words
-
-    @learn_session.user = current_user
   end
 
   # GET /learn_sessions/1/edit
@@ -33,11 +25,23 @@ class LearnSessionsController < ApplicationController
   # POST /learn_sessions
   # POST /learn_sessions.json
   def create
-    @learn_session = LearnSession.new(learn_session_params)
+    @learn_session = LearnSession.new
+
+    # select random 10 words from the Words stock. Later the user should be able bey themselves to select the amount of words
+    @words = Word.where(language: locale)
+    @randomWords = @words.sample(10)
+
+    @randomWords.each{|rw| @learn_session.words << rw}
+
+    # all words have to go into the first box. Check the comments in learnSession model for more information
+    @learn_session.box0 = @learn_session.word_ids
+
+    #for later, when the usermanagement works
+    #@learn_session.user = current_user
 
     respond_to do |format|
       if @learn_session.save
-        format.html { redirect_to @learn_session, notice: 'Learn session was successfully created.' }
+        format.html { redirect_to learn_session_path(@learn_session), notice: 'Learn session was successfully created.' }
         format.json { render :show, status: :created, location: @learn_session }
       else
         format.html { render :new }
@@ -79,6 +83,6 @@ class LearnSessionsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def learn_session_params
       params[:learn_session]
-      params.require(:learn_session).permit(:user, :completed, :words => [], :box0 => [], :box1 => [], :box2 => [], :box3 => [], :box4 => [])
+      params.require(:learn_session).permit(:user, :completed, :word_ids => [], :box0 => [], :box1 => [], :box2 => [], :box3 => [], :box4 => [])
     end
 end
