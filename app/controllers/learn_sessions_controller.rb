@@ -41,7 +41,7 @@ class LearnSessionsController < ApplicationController
 
     respond_to do |format|
       if @learn_session.save
-        format.html { redirect_to learn_session_path(@learn_session), notice: 'Learn session was successfully created.' }
+        format.html { redirect_to learn_session_learn_mode_path(@learn_session.id), notice: 'Learn session was successfully created.' }
         format.json { render :show, status: :created, location: @learn_session }
       else
         format.html { render :new }
@@ -74,6 +74,13 @@ class LearnSessionsController < ApplicationController
     end
   end
 
+  # GET /learn_sessions/1/learn_mode
+  def learn_mode
+    puts "###################################"
+    puts params
+    @learn_session = LearnSession.find(params[:learn_session_id])
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_learn_session
@@ -83,6 +90,8 @@ class LearnSessionsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def learn_session_params
       params[:learn_session]
-      params.require(:learn_session).permit(:user, :completed, :word_ids => [], :box0 => [], :box1 => [], :box2 => [], :box3 => [], :box4 => [])
+      params.require(:learn_session).permit(:user, :completed, :wors_ids => [], :box0 => [], :box1 => [], :box2 => [], :box3 => [], :box4 => [])
     end
+
+
 end

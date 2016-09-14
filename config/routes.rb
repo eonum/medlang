@@ -9,7 +9,9 @@ Rails.application.routes.draw do
 
     resources :users
 
-    resources :learn_sessions
+    resources :learn_sessions do
+      get :learn_mode
+    end
   end
 
   root :to => 'infos#home'
