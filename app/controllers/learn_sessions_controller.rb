@@ -76,7 +76,6 @@ class LearnSessionsController < ApplicationController
 
   # GET /learn_sessions/1/learn_mode
   def learn_mode
-    puts "###################################"
     puts params
     @learn_session = LearnSession.find(params[:learn_session_id])
   end
@@ -92,6 +91,35 @@ class LearnSessionsController < ApplicationController
       params[:learn_session]
       params.require(:learn_session).permit(:user, :completed, :wors_ids => [], :box0 => [], :box1 => [], :box2 => [], :box3 => [], :box4 => [])
     end
+
+  # take the array arr and picks the no_of_values from it and store it in a new array array_off_random_values
+  # this method is needed because the sample method of Array doesn't care about duplicates
+  def generate_random_array(arr, no_of_values )
+    random_numbers = []
+    array_of_random_values = []
+
+    random_numbers = rand_n(no_of_values, arr.length)
+
+    i = 0
+    while i < no_of_values do
+      array_of_random_values << arr[random_numbers[i]]
+      i += 1
+    end
+
+    return array_of_random_values
+  end
+
+  # this method returns a array of unique numbers depending on how much numbers do you need
+  # and how big the biggest value should be.
+  def rand_n(n, max)
+    randoms = Set.new
+    loop do
+      randoms << rand(max)
+      return randoms.to_a if randoms.size >= n
+    end
+  end
+
+
 
 
 end
