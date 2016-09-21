@@ -29,7 +29,7 @@ class LearnSessionsController < ApplicationController
 
     # select random 10 words from the Words stock. Later the user should be able bey themselves to select the amount of words
     @words = Word.where(language: locale)
-    @randomWords = @words.sample(10)
+    @randomWords = generate_random_array(@words, 10)
 
     @randomWords.each{|rw| @learn_session.words << rw}
 
