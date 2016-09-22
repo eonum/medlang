@@ -29,18 +29,16 @@ class LearnSessionsController < ApplicationController
 
     # select random 10 words from the Words stock. Later the user should be able bey themselves to select the amount of words
     @words = Word.where(language: locale)
-    @randomWords = generate_random_array(@words, 10)
+    @random_Words = generate_random_array(@words, 10)
+    @random_Words.each{|rw| @learn_session.words << rw}
 
-    @randomWords.each{|rw| @learn_session.words << rw}
-
-    @randomWords.each{|rw| @learn_session.choices.push([rw.description])}
-
-    @learn_session.choices.each do |sub|
-        randomWords2 = generate_random_array(@words, 3)
-        randomWords2.each{|rw| sub.push(rw.description)}
+    # filling up the 2-D array choice
+    @random_Words.each{|rw| @learn_session.choices.push([rw.description])}
+    @learn_session.choices.each do |choice_bucket|
+        random_Choice = generate_random_array(@words, 3)
+        random_Choice.each{|rc| choice_bucket.push(rc.description)}
     end
-
-
+    
     # all words have to go into the first box. Check the comments in learnSession model for more information
     @learn_session.box0 = @learn_session.word_ids
 
@@ -126,8 +124,5 @@ class LearnSessionsController < ApplicationController
       return randoms.to_a if randoms.size >= n
     end
   end
-
-
-
 
 end
