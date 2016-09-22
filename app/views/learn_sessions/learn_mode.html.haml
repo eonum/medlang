@@ -1,1 +1,8 @@
-= @learn_session.id
+
+- i = 0
+- while  i < @learn_session.words.length  do
+  %h1
+    = @learn_session.words[i].name
+  = t('learnSession_question')
+  = t('learnSession_question_text')
+  - i += 1

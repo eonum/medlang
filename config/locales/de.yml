@@ -49,6 +49,9 @@ de:
 
   # learnSession
   learnSession_start: 'Lerneinheit starten'
+  learnSession_question: 'Frage:'
+  learnSession_question_text: 'Welche der folgenden Aussagen trifft zu?'
+  learnSession_answer: 'Antwort:'
 
 
 

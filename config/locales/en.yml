@@ -50,6 +50,9 @@ en:
 
   # learnSession
   learnSession_start: 'Start learning session'
+  learnSession_question: 'Question:'
+  learnSession_question_text: 'Which of the following statements is true?'
+  learnSession_answer: 'Answer:'
 
 
   #general stuff
