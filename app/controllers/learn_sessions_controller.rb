@@ -33,6 +33,14 @@ class LearnSessionsController < ApplicationController
 
     @randomWords.each{|rw| @learn_session.words << rw}
 
+    @randomWords.each{|rw| @learn_session.choices.push([rw.description])}
+
+    @learn_session.choices.each do |sub|
+        randomWords2 = generate_random_array(@words, 3)
+        randomWords2.each{|rw| sub.push(rw.description)}
+    end
+
+
     # all words have to go into the first box. Check the comments in learnSession model for more information
     @learn_session.box0 = @learn_session.word_ids
 

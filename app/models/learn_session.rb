@@ -9,6 +9,10 @@ class LearnSession
   has_one :user
   has_and_belongs_to_many :words, class_name: "Word", inverse_of: nil
 
+  # this array contains four choices (to answer a question) for each word from words. One of them is the correct the other 3
+  # are wrong
+  field :choices, type: Array, default: []
+
   # the idea behind the boxes is the following:
   # first all words go into the first box
   # if a user answers the question for one word correct, the word goes one box up until it's box4
