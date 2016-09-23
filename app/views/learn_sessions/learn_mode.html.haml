@@ -1,8 +1,19 @@
 
-- i = 0
-- while  i < @learn_session.words.length  do
+- @learn_session.words.each do |word|
   %h1
-    = @learn_session.words[i].name
-  = t('learnSession_question')
-  = t('learnSession_question_text')
-  - i += 1
+    =word.name
+  .text-center
+    =t('learnSession_question')
+    =t('learnSession_question_text')
+
+  .row
+    .col-lg-6.choice-1
+      = @learn_session.choices[0][0]
+    .col-lg-6.choice-2
+      = @learn_session.choices[0][1]
+  .row
+    .col-lg-6.choice-3
+      = @learn_session.choices[0][2]
+    .col-lg-6.choice-4
+      = @learn_session.choices[0][3]
+

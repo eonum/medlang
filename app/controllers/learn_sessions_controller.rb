@@ -38,7 +38,7 @@ class LearnSessionsController < ApplicationController
         random_Choice = generate_random_array(@words, 3)
         random_Choice.each{|rc| choice_bucket.push(rc.description)}
     end
-    
+
     # all words have to go into the first box. Check the comments in learnSession model for more information
     @learn_session.box0 = @learn_session.word_ids
 
