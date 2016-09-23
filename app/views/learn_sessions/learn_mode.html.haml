@@ -1,19 +1,23 @@
-
+- i = 0
 - @learn_session.words.each do |word|
-  %h1
-    =word.name
-  .text-center
-    =t('learnSession_question')
-    =t('learnSession_question_text')
-
+  .row
+    .col-lg-12
+      .question-field
+        %strong
+          =word.name
+        =t('learnSession_question')
+        =t('learnSession_question_text')
   .row
     .col-lg-6.choice-1
-      = @learn_session.choices[0][0]
+      = @learn_session.choices[i][0]
     .col-lg-6.choice-2
-      = @learn_session.choices[0][1]
+      = @learn_session.choices[i][1]
   .row
     .col-lg-6.choice-3
-      = @learn_session.choices[0][2]
+      = @learn_session.choices[i][2]
     .col-lg-6.choice-4
-      = @learn_session.choices[0][3]
+      = @learn_session.choices[i][3]
+  %br
+
+    - i+= 1
 
