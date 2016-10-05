@@ -32,13 +32,6 @@ class LearnSessionsController < ApplicationController
     @random_Words = generate_random_array(@words, 10)
     @random_Words.each{|rw| @learn_session.words << rw}
 
-    # filling up the 2-D array choice
-    @random_Words.each{|rw| @learn_session.choices.push([rw.description])}
-    @learn_session.choices.each do |choice_bucket|
-        random_Choice = generate_random_array(@words, 3)
-        random_Choice.each{|rc| choice_bucket.push(rc.description)}
-    end
-
     # all words have to go into the first box. Check the comments in learnSession model for more information
     @learn_session.box0 = @learn_session.word_ids
 
@@ -82,8 +75,24 @@ class LearnSessionsController < ApplicationController
 
   # GET /learn_sessions/1/learn_mode
   def learn_mode
-    puts params
     @learn_session = LearnSession.find(params[:learn_session_id])
+
+    # shuffle is needed because otherwise you will always get the alphabetical oder
+    @learn_session.words = @learn_session.words.shuffle
+
+    # filling up the 2-D array choice
+    @words = Word.where(language: locale)
+    @choices = Array.new
+    @learn_session.words.each{|w| @choices << [w.description]}
+
+    @choices.each do |choice_bucket|
+      random_choice = generate_random_array(@words, 3)
+      random_choice.each{|rc| choice_bucket << rc.description}
+
+      # shuffle the arry because otherwise the correct answer will always be first
+      choice_bucket.shuffle!
+    end
+
   end
 
   private
