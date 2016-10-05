@@ -86,10 +86,18 @@ class LearnSessionsController < ApplicationController
     @learn_session.words.each{|w| @choices << [w.description]}
 
     @choices.each do |choice_bucket|
-      random_choice = generate_random_array(@words, 3)
-      random_choice.each{|rc| choice_bucket << rc.description}
+      random_choice = generate_random_array(@words, 4)
 
-      # shuffle the arry because otherwise the correct answer will always be first
+      random_choice[0..2].each do |rc|
+        #this if else statement is to make sure the correct answer don't show up twice
+        if rc.description.equal?(choice_bucket[0])
+          choice_bucket << rc[3]
+        else
+          choice_bucket << rc.description
+        end
+
+      end
+      # shuffle the arry because otherwise the correct answer will always at the first object in a array
       choice_bucket.shuffle!
     end
 
