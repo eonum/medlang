@@ -95,12 +95,10 @@ class LearnSessionsController < ApplicationController
         else
           choice_bucket << rc.description
         end
-
       end
       # shuffle the arry because otherwise the correct answer will always at the first object in a array
       choice_bucket.shuffle!
     end
-
   end
 
   private
