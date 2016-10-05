@@ -27,5 +27,5 @@ namespace :db do
     end
     puts '######### Categories import has finished #########'
   end
-  
+
 end
