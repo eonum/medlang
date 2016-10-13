@@ -48,11 +48,12 @@
                 %li= link_to 'English', params.merge({ locale: :en })
 
     / Content form different pages start here
-    .container
-      = yield
+    .content
+      .container
+        = yield
 
     / Footer content
-    .navbar.navbar-default
+    .navbar.navbar-default.footer
       .container-fluid
         .row.spacer
           .col-lg-12
