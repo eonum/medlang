@@ -20,6 +20,15 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  #home page
+  greeting_text_heading: "Wellcome at Medlang!"
+  greeting_text_start: "Medlang is a learning plattform which helps you to learn medical terms. For this medlang creates
+  a catalogue of words seperated and four stages. After that medlang will as you for the defintions of those words."
+  greeting_text_ol_li_1: "if you know the defintion of the word, it will go up one stage"
+  greeting_text_ol_li_2: "if you don't know the defintion, the word will remain at the same stage untill you know it!"
+  greeting_text_ol_li_3: "this process goes on until all words in your catalogue are in the fourth stage."
+  greeting_text_end: "So lets start with your frist learn session, click on the button right below this text!"
+
   #controller part
   word_create_success: "Word has been successfully created"
   word_update_success: "The word has been successfully updated"

@@ -20,6 +20,17 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 de:
+  #home page
+  greeting_text_heading: "Willkommen bei Medlang!"
+  greeting_text_start: "Medlang ist eine Lernplattform, die dir dabei hilft medizinisches Wissen anzueigenen oder weiter
+                        auszubauen. Dabei greifft Medlang auf das altbewährte Lernkarteisystem zurück, das sowohl
+                        einfach wie auch genial ist:"
+
+  greeting_text_ol_li_1: "kannst du eine Karteikarte, geht sie eine Box rauf,"
+  greeting_text_ol_li_2: "kannst du die Karteikarte nicht, bleibt sie in der Box wo sie momentan ist!"
+  greeting_text_ol_li_3: "Du wirst so lange die Wörter abgefragt, bis du alle in der letzen von vier Boxen hast!"
+  greeting_text_end: "Starte deine erste Lern-Session indem du auf den grossen Button unterhalb dieses Textes drückst!"
+
   #controlle part
   word_create_success: "Das Wort wurde erfolgreich erstellt"
   word_update_success: "Das Wort wurde erfolgreich geändert"
