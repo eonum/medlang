@@ -26,14 +26,14 @@ de:
   delete_confirmation: "Wirklich löschen?"
 
   #word
-  word_new: 'Neues Wort'
+  word_new: 'Neue Karteikarte'
   word_name: "Name"
   word_description: "Beschreibung"
   word_syntactical_category: "Syntax-Kategorie"
   word_semantical_category: "Semantische Kategorie/en"
 
-  words_overview: 'Übersicht Wörter'
-  word_add_category: 'Kategory hinzufügen'
+  words_overview: 'Karteikarten'
+  word_add_category: 'Kategorie hinzufügen'
   word_warning_already_exists: 'Dieses Wort gibt es bereits!'
 
   #category
@@ -67,9 +67,9 @@ de:
   #navbar section
   about: "Über uns"
   category_library: "Kategorien"
-  new_category: "Neue Kategorie"
+  new_category: "Kategorie erstellen"
   card_libary: "Karteikarten"
-  new_card: "Neue Karteikarte"
+  new_card: "Karteikarte erstellen"
   login: "Login"
 
   #footer
