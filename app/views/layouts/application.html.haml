@@ -46,16 +46,18 @@
                 %li= link_to 'Francais', params.merge({ locale: :fr })
                 %li= link_to 'Italiano', params.merge({ locale: :it })
                 %li= link_to 'English', params.merge({ locale: :en })
+
     / Content form different pages start here
     .container
       = yield
+
     / Footer content
-    .navbar.navbar-default.navbar-fixed-bottom
+    .navbar.navbar-default
       .container-fluid
         .row.spacer
-          .col-md-12
+          .col-lg-12
         .row
-          .col-md-6.col-md-offset-3
+          .col-lg-12
             %p.text-center
               = t('company')
               %br
