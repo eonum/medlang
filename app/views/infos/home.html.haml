@@ -1,14 +1,14 @@
 .row
-  .col-lg-12
-    %h1
+  .col-md-12
+    %h1.text-center
       = t('greeting_text_heading')
 .row
-  .col-lg-12
+  .col-md-12
     %p
       = t('greeting_text_start')
     %br
 .row
-  .col-lg-6
+  .col-md-6
     %ol
       %li
         = t('greeting_text_ol_li_1')
@@ -20,10 +20,11 @@
       %br
       = t('greeting_text_end')
     %br
-  .col-lg-6
-    = image_tag('medlang_concept.jpg', height: '180', width: '165')
+  .col-md-6
+    .pull-left
+      = image_tag('medlang_concept.jpg', height: '180', width: '165')
 .row
-  .col-lg-12
+  .col-md-12
     .text-center
     .btn.btn-primary
       %h1
