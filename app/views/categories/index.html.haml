@@ -5,16 +5,16 @@
     .col-lg-12
       .panel.panel-default
         .panel-heading
-          = c.name
+          %strong
+            = c.name
           .pull-right
             .btn.btn-default.btn-xs
               = link_to content_tag(:i, nil, class: 'fa fa-pencil', title: t('edit')), edit_category_path(c)
             .btn.btn-default.btn-xs
               = link_to content_tag(:i, nil, class: 'fa fa-times', title: t('delete')),c, method: :delete, data: {confirm: t('confirmation_question')}
         .panel-body
-          %p
-            %strong
-              = t('category_type')+ ': '
-              /this takes the value from the category_type and translate it into the desired language
-              = t("category_#{c.category_type}")
+          .category-box.pull-right
+            = t('category_type')+ ': '
+            /this takes the value from the category_type and translate it into the desired language
+            = t("category_#{c.category_type}")
           = c.description
