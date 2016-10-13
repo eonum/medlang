@@ -20,20 +20,31 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 de:
+  #home page
+  greeting_text_heading: "Willkommen bei Medlang!"
+  greeting_text_start: "Medlang ist eine Lernplattform, die dir dabei hilft medizinisches Wissen anzueigenen oder weiter
+                        auszubauen. Dabei greifft Medlang auf das altbewährte Lernkarteisystem zurück, das sowohl
+                        einfach wie auch genial ist:"
+
+  greeting_text_ol_li_1: "kannst du eine Karteikarte, geht sie eine Box rauf,"
+  greeting_text_ol_li_2: "kannst du die Karteikarte nicht, bleibt sie in der Box wo sie momentan ist!"
+  greeting_text_ol_li_3: "Du wirst so lange die Wörter abgefragt, bis du alle in der letzen von vier Boxen hast!"
+  greeting_text_end: "Starte deine erste Lern-Session indem du auf den grossen Button unterhalb dieses Textes drückst!"
+
   #controlle part
   word_create_success: "Das Wort wurde erfolgreich erstellt"
   word_update_success: "Das Wort wurde erfolgreich geändert"
   delete_confirmation: "Wirklich löschen?"
 
   #word
-  word_new: 'Neues Wort'
+  word_new: 'Neue Karteikarte'
   word_name: "Name"
   word_description: "Beschreibung"
   word_syntactical_category: "Syntax-Kategorie"
   word_semantical_category: "Semantische Kategorie/en"
 
-  words_overview: 'Übersicht Wörter'
-  word_add_category: 'Kategory hinzufügen'
+  words_overview: 'Karteikarten'
+  word_add_category: 'Kategorie hinzufügen'
   word_warning_already_exists: 'Dieses Wort gibt es bereits!'
 
   #category
@@ -42,7 +53,7 @@ de:
   category_type: 'Typ'
   category_new: 'Neue Kategorie'
   category_edit: 'Kategorie bearbeiten'
-  category_overview: 'Übersicht aller Kategorien'
+  category_overview: 'Kategorien'
   category: 'Kategorie:'
   category_semantic: 'Semantik'
   category_syntactic: 'Syntax'
@@ -74,9 +85,9 @@ de:
   #navbar section
   about: "Über uns"
   category_library: "Kategorien"
-  new_category: "Neue Categorie"
+  new_category: "Kategorie erstellen"
   card_libary: "Karteikarten"
-  new_card: "Neue Karteikarte"
+  new_card: "Karteikarte erstellen"
   login: "Login"
 
   #footer
