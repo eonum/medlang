@@ -42,7 +42,7 @@ de:
   category_type: 'Typ'
   category_new: 'Neue Kategorie'
   category_edit: 'Kategorie bearbeiten'
-  category_overview: 'Übersicht aller Kategorien'
+  category_overview: 'Kategorien'
   category: 'Kategorie:'
   category_semantic: 'Semantik'
   category_syntactic: 'Syntax'
@@ -67,7 +67,7 @@ de:
   #navbar section
   about: "Über uns"
   category_library: "Kategorien"
-  new_category: "Neue Categorie"
+  new_category: "Neue Kategorie"
   card_libary: "Karteikarten"
   new_card: "Neue Karteikarte"
   login: "Login"
