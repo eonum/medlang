@@ -1,0 +1,3 @@
+[submodule "medlang_data"]
+	path = medlang_data
+	url = sam@casematch.eonum.ch:/home/sam/medlang_data
