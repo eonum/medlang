@@ -2,7 +2,7 @@
   - @learn_session.words.each do |word|
     - i = @learn_session.words.index(word)
     .row
-      .col-lg-12
+      .col-sx-12.col-sm-12.col-md-12
         .question-field
           %strong
             = word.name + ': '
@@ -10,13 +10,13 @@
           =t('learnSession_question')
           =t('learnSession_question_text')
     .row
-      .col-lg-6.choice-1
+      .col-sx-6.col-sm-6.col-md-6.choice-1
         = @choices[i][0]
-      .col-lg-6.choice-2
+      .col-sx-6.col-sm-6.col-md-6.choice-2
         = @choices[i][1]
     .row
-      .col-lg-6.choice-3
+      .col-sx-6.col-sm-6.col-md-6.choice-3
         = @choices[i][2]
-      .col-lg-6.choice-4
+      .col-sx-6.col-sm-6.col-md-6.choice-4
         = @choices[i][3]
     %br
