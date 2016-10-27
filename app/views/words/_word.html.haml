@@ -1,0 +1,12 @@
+.row
+  .col-sx-12.col-sm-12.col-md-12
+
+    - @i = @learn_session.words.index(word)
+
+    .question-field
+      %strong
+        = word.name + ': '
+      =t('learnSession_question')
+      =t('learnSession_question_text')
+= render 'learn_sessions/choices'
+%br
