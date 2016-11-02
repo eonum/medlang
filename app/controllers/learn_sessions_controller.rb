@@ -115,19 +115,17 @@ class LearnSessionsController < ApplicationController
     # this if else statement looks, that only valid valus are used, if it gets bigger than the lenght of the words array
     # it starts again at the beginning
     if params[:index].to_i <= @learn_session.words.length
-      params[:index].to_i + 1
+      params[:index] = params[:index].to_i + 1
     else
       params[:index].to_i = 0
     end
 
     if @learn_session.words[(params[:index].to_i)].description.equal? user_answer
-
       flash[:notice] = t('learnSession_learn_mode_answer_correct')
-      redirect_to learn_session_learn_mode_path(@learn_session.id), index: params[:index]
-
+      redirect_to learn_session_learn_mode_path(@learn_session.id, index: params[:index])
     else
-      flash[:notice] = t('learnSession_learn_mode_answer_incorrect')
-      redirect_to learn_session_learn_mode_path(@learn_session.id), index: params[:index]
+      redirect_to learn_session_learn_mode_path(@learn_session.id, index: params[:index])
+      flash[:notice] = " \" #{@learn_session.words[(params[:index].to_i)].name}\"" + t('means') + " \"#{@learn_session.words[(params[:index].to_i)].description}\"" + t('and_not') + " \"#{user_answer}\""
     end
   end
 

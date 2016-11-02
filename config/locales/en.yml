@@ -78,6 +78,8 @@ en:
   confirmation_question: 'Are you sure?'
   language: 'Language'
   export_to_csv: 'Download as CSV'
+  means: ' means '
+  and_not: ' not '
 
 
   #navbar section

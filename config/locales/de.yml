@@ -65,6 +65,9 @@ de:
   learnSession_answer: 'Antwort:'
   learnSession_learn_mode_answer_correct: 'Deine Antwort ist korrekt'
   learnSession_learn_mode_answer_incorrect: 'Deine Antwort war falsch'
+  means: ' bedeutet '
+  and_not: ' und nicht '
+
 
 
   #general stuff
@@ -80,6 +83,8 @@ de:
   forward: 'vorwärts'
   confirmation_question: 'Sind Sie sich sicher?'
   export_to_csv: 'als CSV herunterladen'
+  means: ' bedeutet '
+  and_not: ' und nicht '
 
 
   #navbar section
