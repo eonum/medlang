@@ -63,8 +63,8 @@ de:
   learnSession_question: 'Frage:'
   learnSession_question_text: 'Welche der folgenden Aussagen trifft zu?'
   learnSession_answer: 'Antwort:'
-
-
+  learnSession_learn_mode_answer_correct: 'Deine Antwort ist korrekt'
+  learnSession_learn_mode_answer_incorrect: 'Deine Antwort war falsch'
 
 
   #general stuff

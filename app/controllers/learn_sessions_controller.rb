@@ -114,12 +114,12 @@ class LearnSessionsController < ApplicationController
 
     if @learn_session.words[(params[:index].to_i)].description.equal? user_answer
 
-      flash[:notice] = 'Correct'
+      flash[:notice] = t('learnSession_learn_mode_answer_correct')
       redirect_to learn_session_learn_mode_path(@learn_session.id), index: params[:index]
       puts "Korrekt"
 
     else
-      flash[:notice] = 'Wrong'
+      flash[:notice] = t('learnSession_learn_mode_answer_incorrect')
       redirect_to learn_session_learn_mode_path(@learn_session.id, index: params[:index].to_i + 1)
       puts "falsch"
     end
