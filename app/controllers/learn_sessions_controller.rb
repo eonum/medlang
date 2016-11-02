@@ -99,6 +99,30 @@ class LearnSessionsController < ApplicationController
       # shuffle the arry because otherwise the correct answer will always at the first object in a array
       choice_bucket.shuffle!
     end
+
+    respond_to do |format|
+      format.html # show.html.erb
+      format.html # show.html.erb
+      format.json { render json: @learn_session }
+    end
+  end
+
+  def check_answer
+    @learn_session = LearnSession.find(params[:learn_session_id])
+
+    user_answer = params[:value]
+
+    if @learn_session.words[(params[:index].to_i)].description.equal? user_answer
+
+      flash[:notice] = 'Correct'
+      redirect_to learn_session_learn_mode_path(@learn_session.id), index: params[:index]
+      puts "Korrekt"
+
+    else
+      flash[:notice] = 'Wrong'
+      redirect_to learn_session_learn_mode_path(@learn_session.id, index: params[:index].to_i + 1)
+      puts "falsch"
+    end
   end
 
   private
@@ -139,5 +163,4 @@ class LearnSessionsController < ApplicationController
       return randoms.to_a if randoms.size >= n
     end
   end
-
 end

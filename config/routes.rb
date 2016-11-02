@@ -11,6 +11,7 @@ Rails.application.routes.draw do
 
     resources :learn_sessions do
       get :learn_mode
+      post :check_answer
     end
   end
 

@@ -1,6 +1,6 @@
 .row
   .col-sx-6.col-sm-6.col-md-6.choice-1
-    = @choices[@i][0]
+    = button_to "#{@choices[@i][0]}", controller: 'learn_sessions', :action => 'check_answer', learn_session_id: @learn_session.id, index: @i,  :value => @choices[@i][0]
   .col-sx-6.col-sm-6.col-md-6.choice-2
     = @choices[@i][1]
 .row

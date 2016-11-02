@@ -1,2 +1,10 @@
 %br
-= render @learn_session.words
+  -if params[:index].equal? nil
+    - index_vaule = 0
+  -else
+    - index_vaule = params[:index].to_i
+
+
+%p#notice
+  = notice
+= render @learn_session.words[index_vaule]
