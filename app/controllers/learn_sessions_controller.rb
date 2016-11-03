@@ -80,8 +80,6 @@ class LearnSessionsController < ApplicationController
   def learn_mode
     @learn_session = LearnSession.find(params[:learn_session_id])
 
-
-
     # filling up the 2-D array choice
     @words = Word.where(language: locale)
     @choices = Array.new
@@ -104,7 +102,6 @@ class LearnSessionsController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.html # show.html.erb
       format.json { render json: @learn_session }
     end
   end
@@ -112,6 +109,9 @@ class LearnSessionsController < ApplicationController
   def check_answer
     @learn_session = LearnSession.find(params[:learn_session_id])
     user_answer = params[:user_answer]
+
+    # with @current_ word you don't neet to repeat allways @learn_session.words[(params[:index].to_i)]
+    @word_to_check = @learn_session.words[(params[:index].to_i)]
 
     # this if else statement looks, that only valid valus are used, if it gets bigger than the lenght of the words array
     # it starts again at the beginning
@@ -121,10 +121,43 @@ class LearnSessionsController < ApplicationController
       params[:index].to_i = 0
     end
 
+
     # this is the actual validation part of this method
-    if @learn_session.words[(params[:index].to_i - 1)].description == user_answer
+    if @word_to_check.description == user_answer
       flash[:notice] = t('learnSession_learn_mode_answer_correct')
-      redirect_to learn_session_learn_mode_path(@learn_session.id, index: params[:index])
+
+      # this part puts a word into the next box, if the user_answer is correct and delete it out of the old box
+      case
+        when @learn_session.box0.include?(@word_to_check.id)
+
+          @learn_session.box1.push(@word_to_check.id)
+          @learn_session.box0.delete_if{|w| w == @word_to_check.id}
+        when @learn_session.box1.include?(@word_to_check.id)
+          @learn_session.box2 << @word_to_check.id
+          @learn_session.box1.delete_if{|w| w == @word_to_check.id}
+        when @learn_session.box2.include?(@word_to_check.id)
+          @learn_session.box3 << @word_to_check.id
+          @learn_session.box2.delete_if{|w| w == @word_to_check.id}
+        when @learn_session.box3.include?(@word_to_check.id)
+          @learn_session.box4 << @word_to_check.id
+          @learn_session.box3.delete_if{|w| w == @word_to_check.id}
+      end
+
+      # this if statement checks, if the learn_session is completet (it's completed when all words are in box4)
+      if @learn_session.box4.length != @learn_session.words.length
+
+        merged_boxes = @learn_session.box0 + @learn_session.box1 + @learn_session.box2 +
+            @learn_session.box3
+        new_word_to_check = merged_boxes[merged_boxes.index(@word_to_check.id) + 1]
+
+        @learn_session.save
+        redirect_to learn_session_learn_mode_path(@learn_session.id, word: new_word_to_check)
+      else
+        # this is temporary, after a learn_session is completed the the application should root the user to a specific$
+        # site
+        redirect_to root_path
+      end
+
     else
       redirect_to learn_session_learn_mode_path(@learn_session.id, index: params[:index])
       flash[:notice] = " \" #{@learn_session.words[(params[:index].to_i - 1)].name}\"" + t('means') +
