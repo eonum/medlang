@@ -59,6 +59,9 @@ de:
   category_syntactic: 'Syntax'
 
   # learnSession
+  learnSession_create: "Los geht's!"
+  learnSession_update: "Wurde aktuallisiert"
+  learnSession_delete: "Learn Session wurde gelöscht"
   learnSession_start: 'Lerneinheit starten'
   learnSession_question: 'Frage:'
   learnSession_question_text: 'Welche der folgenden Aussagen trifft zu?'
@@ -67,6 +70,7 @@ de:
   learnSession_learn_mode_answer_incorrect: 'Deine Antwort war falsch'
   means: ' bedeutet '
   and_not: ' und nicht '
+
 
 
 

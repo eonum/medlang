@@ -58,6 +58,9 @@ en:
   category_syntactic: 'Syntax'
 
   # learnSession
+  learnSession_create: "Let's start!"
+  learnSession_update: "Learn session updated"
+  learnSession_delete: "Learn session deleted"
   learnSession_start: 'Start learning session'
   learnSession_question: 'Question:'
   learnSession_question_text: 'Which of the following statements is true?'

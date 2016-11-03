@@ -43,7 +43,7 @@ class LearnSessionsController < ApplicationController
 
     respond_to do |format|
       if @learn_session.save
-        format.html { redirect_to learn_session_learn_mode_path(@learn_session.id), notice: 'Learn session was successfully created.' }
+        format.html { redirect_to learn_session_learn_mode_path(@learn_session.id), notice: t('learnSession_create') }
         format.json { render :show, status: :created, location: @learn_session }
       else
         format.html { render :new }
@@ -57,7 +57,7 @@ class LearnSessionsController < ApplicationController
   def update
     respond_to do |format|
       if @learn_session.update(learn_session_params)
-        format.html { redirect_to @learn_session, notice: 'Learn session was successfully updated.' }
+        format.html { redirect_to @learn_session, notice: t('learnSession_update') }
         format.json { render :show, status: :ok, location: @learn_session }
       else
         format.html { render :edit }
@@ -71,7 +71,7 @@ class LearnSessionsController < ApplicationController
   def destroy
     @learn_session.destroy
     respond_to do |format|
-      format.html { redirect_to learn_sessions_url, notice: 'Learn session was successfully destroyed.' }
+      format.html { redirect_to learn_sessions_url, notice: t('learnSession_delete') }
       format.json { head :no_content }
     end
   end
