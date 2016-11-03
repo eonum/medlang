@@ -110,7 +110,7 @@ class LearnSessionsController < ApplicationController
   def check_answer
     @learn_session = LearnSession.find(params[:learn_session_id])
 
-    user_answer = params[:value]
+    user_answer = params[:user_answer]
 
     # this if else statement looks, that only valid valus are used, if it gets bigger than the lenght of the words array
     # it starts again at the beginning
