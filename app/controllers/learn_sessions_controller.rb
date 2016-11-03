@@ -111,7 +111,6 @@ class LearnSessionsController < ApplicationController
 
   def check_answer
     @learn_session = LearnSession.find(params[:learn_session_id])
-
     user_answer = params[:user_answer]
 
     # this if else statement looks, that only valid valus are used, if it gets bigger than the lenght of the words array
@@ -122,12 +121,14 @@ class LearnSessionsController < ApplicationController
       params[:index].to_i = 0
     end
 
-    if @learn_session.words[(params[:index].to_i)].description.equal? user_answer
+    # this is the actual validation part of this method
+    if @learn_session.words[(params[:index].to_i - 1)].description == user_answer
       flash[:notice] = t('learnSession_learn_mode_answer_correct')
       redirect_to learn_session_learn_mode_path(@learn_session.id, index: params[:index])
     else
       redirect_to learn_session_learn_mode_path(@learn_session.id, index: params[:index])
-      flash[:notice] = " \" #{@learn_session.words[(params[:index].to_i - 1)].name}\"" + t('means') + " \"#{@learn_session.words[(params[:index].to_i)].description}\"" + t('and_not') + " \"#{user_answer}\""
+      flash[:notice] = " \" #{@learn_session.words[(params[:index].to_i - 1)].name}\"" + t('means') +
+          " \"#{@learn_session.words[(params[:index].to_i - 1)].description}\"" + t('and_not') + " \"#{user_answer}\""
     end
   end
 
@@ -140,7 +141,8 @@ class LearnSessionsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def learn_session_params
       params[:learn_session]
-      params.require(:learn_session).permit(:user, :completed, :wors_ids => [], :box0 => [], :box1 => [], :box2 => [], :box3 => [], :box4 => [])
+      params.require(:learn_session).permit(:user, :completed, :wors_ids => [], :box0 => [], :box1 => [], :box2 => [],
+                                            :box3 => [], :box4 => [])
     end
 
   # take the array arr and picks the no_of_values from it and store it in a new array array_off_random_values
