@@ -32,6 +32,9 @@ class LearnSessionsController < ApplicationController
     @random_Words = generate_random_array(@words, 10)
     @random_Words.each{|rw| @learn_session.words << rw}
 
+    # shuffle is needed because otherwise you will always get the alphabetical oder
+    @learn_session.words = @learn_session.words.shuffle
+
     # all words have to go into the first box. Check the comments in learnSession model for more information
     @learn_session.box0 = @learn_session.word_ids
 
@@ -77,8 +80,7 @@ class LearnSessionsController < ApplicationController
   def learn_mode
     @learn_session = LearnSession.find(params[:learn_session_id])
 
-    # shuffle is needed because otherwise you will always get the alphabetical oder
-    @learn_session.words = @learn_session.words.shuffle
+
 
     # filling up the 2-D array choice
     @words = Word.where(language: locale)
