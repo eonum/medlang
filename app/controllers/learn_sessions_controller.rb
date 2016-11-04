@@ -174,7 +174,7 @@ class LearnSessionsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def learn_session_params
       params[:learn_session]
-      params.require(:learn_session).permit(:user, :completed, :wors_ids => [], :box0 => [], :box1 => [], :box2 => [],
+      params.require(:learn_session).permit(:user, :completed, :words_ids => [], :box0 => [], :box1 => [], :box2 => [],
                                             :box3 => [], :box4 => [])
     end
 
