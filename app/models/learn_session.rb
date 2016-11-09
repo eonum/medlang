@@ -8,6 +8,7 @@ class LearnSession
 
   has_one :user
   has_and_belongs_to_many :words, class_name: "Word", inverse_of: nil
+  has_and_belongs_to_many :box0,class_name: "Word", inverse_of: nil
 
   # this array contains four choices (to answer a question) for each word from words. One of them is the correct the other 3
   # are wrong
@@ -18,7 +19,6 @@ class LearnSession
   # a word remains in the current box, when the answer of the user is wrong. It doesn't go one box down!
   # the learnSession is not completed until all words are in box4
 
-  field :box0, type: Array, default: []
   field :box1, type: Array, default: []
   field :box2, type: Array, default: []
   field :box3, type: Array, default: []
