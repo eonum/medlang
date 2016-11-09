@@ -30,13 +30,13 @@ class LearnSessionsController < ApplicationController
     # select random 10 words from the Words stock. Later the user should be able bey themselves to select the amount of words
     @words = Word.where(language: locale)
     @random_Words = generate_random_array(@words, 10)
-    @random_Words.each{|rw| @learn_session.words << rw}
-
-    # shuffle is needed because otherwise you will always get the alphabetical oder
-    @learn_session.words = @learn_session.words.shuffle
+    @random_Words.each{|rw| @learn_session.words << rw} # maybe this value can get deleted later, but I keep it for the moment
 
     # all words have to go into the first box. Check the comments in learnSession model for more information
-    @learn_session.box0 = @learn_session.word_ids
+    @random_Words.each{|rw| @learn_session.box0 << rw}
+
+    # shuffle is needed because otherwise you will always get the alphabetical oder
+    @learn_session.box0 = @learn_session.box0.shuffle
 
     #for later, when the usermanagement works
     #@learn_session.user = current_user
@@ -83,7 +83,7 @@ class LearnSessionsController < ApplicationController
     # filling up the 2-D array choice
     @words = Word.where(language: locale)
     @choices = Array.new
-    @learn_session.words.each{|w| @choices << [w.description]}
+    @learn_session.box0.each{|w| @choices << [w.description]}
 
     @choices.each do |choice_bucket|
       random_choice = generate_random_array(@words, 4)
@@ -111,57 +111,65 @@ class LearnSessionsController < ApplicationController
     user_answer = params[:user_answer]
 
     # with @current_ word you don't neet to repeat allways @learn_session.words[(params[:index].to_i)]
-    @word_to_check = @learn_session.words[(params[:index].to_i)]
+    @word_to_check = @learn_session.box0[(params[:index].to_i)]
 
     # this if else statement looks, that only valid valus are used, if it gets bigger than the lenght of the words array
-    # it starts again at the beginning
-    if params[:index].to_i <= @learn_session.words.length
-      params[:index] = params[:index].to_i + 1
-    else
-      params[:index].to_i = 0
+    # it starts again at the beginning. The index needs to be changed bevor the boxes changes because otherwise you
+    # will always have the problem to get the correct array.
+    if @learn_session.box0 != nil
+      params[:index].to_i <= @learn_session.box0.length ? (params[:index] = params[:index].to_i + 1) :
+          (params[:index].to_i = 0)
+    elsif @learn_session.box1 != nil
+      params[:index].to_i <= @learn_session.box1.length ? (params[:index] = params[:index].to_i + 1) :
+          (params[:index].to_i = 0)
+    elsif @learn_session.box2 != nil
+      params[:index].to_i <= @learn_session.box2.length ? (params[:index] = params[:index].to_i + 1) :
+          (params[:index].to_i = 0)
+    else @learn_session.box3 != nil
+      params[:index].to_i <= @learn_session.box3.length ? (params[:index] = params[:index].to_i + 1) :
+          (params[:index].to_i = 0)
     end
-
 
     # this is the actual validation part of this method
     if @word_to_check.description == user_answer
       flash[:notice] = t('learnSession_learn_mode_answer_correct')
+      @learn_session.box0.each{|w| puts w.name}
 
       # this part puts a word into the next box, if the user_answer is correct and delete it out of the old box
       case
-        when @learn_session.box0.include?(@word_to_check.id)
-
+        when @learn_session.box0.include?(@word_to_check)
           @learn_session.box1.push(@word_to_check.id)
-          @learn_session.box0.delete_if{|w| w == @word_to_check.id}
+          @learn_session.box0 = @learn_session.box0.reject{|w| w.id == @word_to_check.id}
         when @learn_session.box1.include?(@word_to_check.id)
           @learn_session.box2 << @word_to_check.id
-          @learn_session.box1.delete_if{|w| w == @word_to_check.id}
+          @learn_session.box1 = @learn_session.box1.reject{|w| w.id == @word_to_check.id}
         when @learn_session.box2.include?(@word_to_check.id)
           @learn_session.box3 << @word_to_check.id
-          @learn_session.box2.delete_if{|w| w == @word_to_check.id}
+          @learn_session.box2 = @learn_session.box2.reject{|w| w.id == @word_to_check.id}
         when @learn_session.box3.include?(@word_to_check.id)
           @learn_session.box4 << @word_to_check.id
-          @learn_session.box3.delete_if{|w| w == @word_to_check.id}
+          @learn_session.box3 = @learn_session.box3.reject{|w| w.id == @word_to_check.id}
       end
 
-      # this if statement checks, if the learn_session is completet (it's completed when all words are in box4)
-      if @learn_session.box4.length != @learn_session.words.length
+      @learn_session.save!
 
+      # this if statement checks, if the learn_session is completet (it's completed when all words are in box4)
+      if @learn_session.box0 != nil && @learn_session.box1 != nil && @learn_session.box2 != nil && @learn_session.box3
         merged_boxes = @learn_session.box0 + @learn_session.box1 + @learn_session.box2 +
             @learn_session.box3
-        new_word_to_check = merged_boxes[merged_boxes.index(@word_to_check.id) + 1]
 
-        @learn_session.save
-        redirect_to learn_session_learn_mode_path(@learn_session.id, word: new_word_to_check)
+        new_word_to_check = merged_boxes[params[:index].to_i]
+        redirect_to learn_session_learn_mode_path(@learn_session.id, word: new_word_to_check, index: params[:index])
       else
-        # this is temporary, after a learn_session is completed the the application should root the user to a specific$
+        # this is temporary, after a learn_session is completed the the application should root the user to a specific
         # site
         redirect_to root_path
       end
 
     else
       redirect_to learn_session_learn_mode_path(@learn_session.id, index: params[:index])
-      flash[:notice] = " \" #{@learn_session.words[(params[:index].to_i - 1)].name}\"" + t('means') +
-          " \"#{@learn_session.words[(params[:index].to_i - 1)].description}\"" + t('and_not') + " \"#{user_answer}\""
+      flash[:notice] = " \" #{@word_to_check.name}\"" + t('means') + " \"#{@word_to_check.description}\""
+        + t('and_not') + " \"#{user_answer}\""
     end
   end
 
