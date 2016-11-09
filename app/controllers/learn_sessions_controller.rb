@@ -168,8 +168,8 @@ class LearnSessionsController < ApplicationController
 
     else
       redirect_to learn_session_learn_mode_path(@learn_session.id, index: params[:index])
-      flash[:notice] = " \" #{@word_to_check.name}\"" + t('means') + " \"#{@word_to_check.description}\""
-        + t('and_not') + " \"#{user_answer}\""
+      flash[:notice] = " \" #{@word_to_check.name}\"" + t('means') + " \"#{@word_to_check.description}\"" +
+          t('and_not') + " \"#{user_answer}\""
     end
   end
 
