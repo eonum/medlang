@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     resources :users
 
     resources :learn_sessions do
-      get :learn_mode
+      get :learn
       post :check_answer
     end
   end

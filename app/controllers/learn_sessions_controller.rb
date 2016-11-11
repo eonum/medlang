@@ -43,7 +43,7 @@ class LearnSessionsController < ApplicationController
 
     respond_to do |format|
       if @learn_session.save
-        format.html { redirect_to learn_session_learn_mode_path(@learn_session.id), notice: t('learnSession_create') }
+        format.html { redirect_to learn_session_learn_path(@learn_session.id), notice: t('learnSession_create') }
         format.json { render :show, status: :created, location: @learn_session }
       else
         format.html { render :new }
@@ -76,8 +76,8 @@ class LearnSessionsController < ApplicationController
     end
   end
 
-  # GET /learn_sessions/1/learn_mode
-  def learn_mode
+  # GET /learn_sessions/1/learn
+  def learn
     @learn_session = LearnSession.find(params[:learn_session_id])
 
     # filling up the 2-D array choice
@@ -166,7 +166,7 @@ class LearnSessionsController < ApplicationController
     @merged_boxes = @learn_session.box0.shuffle + @learn_session.box1.shuffle + @learn_session.box2.shuffle +
         @learn_session.box3.shuffle
 
-    redirect_to learn_session_learn_mode_path(@learn_session.id, index_value: params[:index_value])
+    redirect_to learn_session_learn_path(@learn_session.id, index_value: params[:index_value])
   end
 
   private
