@@ -83,22 +83,22 @@ class LearnSessionsController < ApplicationController
     # filling up the 2-D array choice
     @words = Word.where(language: locale)
     @choices = Array.new
-    @learn_session.box0.each{|w| @choices << [w.description]}
 
-    @choices.each do |choice_bucket|
-      random_choice = generate_random_array(@words, 4)
+    @merged_boxes = @learn_session.box0 + @learn_session.box1 + @learn_session.box2 + @learn_session.box3
 
-      random_choice[0..2].each do |rc|
+    params[:index_value] == nil ? @choices << @merged_boxes[0] : @choices << @merged_boxes[params[:index_value].to_i]
+
+    random_choice = generate_random_array(@words, 4)
+    random_choice[0..2].each do |rc|
         #this if else statement is to make sure the correct answer don't show up twice
-        if rc.description.equal?(choice_bucket[0])
-          choice_bucket << rc[3]
-        else
-          choice_bucket << rc.description
-        end
+      if rc.equal?(@choices[0])
+        @choices << rc[3]
+      else
+        @choices << rc
       end
-      # shuffle the arry because otherwise the correct answer will always at the first object in a array
-      choice_bucket.shuffle!
     end
+      # shuffle the arry because otherwise the correct answer will always at the first object in a array
+    @choices.shuffle!
 
     respond_to do |format|
       format.html # show.html.erb
@@ -108,69 +108,65 @@ class LearnSessionsController < ApplicationController
 
   def check_answer
     @learn_session = LearnSession.find(params[:learn_session_id])
-    user_answer = params[:user_answer]
+    @merged_boxes = @learn_session.box0 + @learn_session.box1 + @learn_session.box2 + @learn_session.box3
+    user_answer = Word.find_by(id: params[:user_answer])
+    asked_word = Word.find_by(id: params[:asked_word])
 
-    # with @current_ word you don't neet to repeat allways @learn_session.words[(params[:index].to_i)]
-    @word_to_check = @learn_session.box0[(params[:index].to_i)]
+    # this is the actual validation part of this method
+    if asked_word.description == user_answer.description
+      flash[:notice] = t('learnSession_learn_mode_answer_correct')
+
+      # this part puts a word into the next box, if the user_answer is correct and delete it out of the old box
+      case
+        when @learn_session.box0.include?(asked_word)
+          @learn_session.box1.push(asked_word)
+          @learn_session.box0 = @learn_session.box0.reject{|w| w.id == asked_word.id}
+        when @learn_session.box1.include?(asked_word)
+          @learn_session.box2.push(asked_word)
+          @learn_session.box1 = @learn_session.box1.reject{|w| w.id == asked_word.id}
+        when @learn_session.box2.include?(asked_word)
+          @learn_session.box3.push(asked_word)
+          @learn_session.box2 = @learn_session.box2.reject{|w| w.id == asked_word.id}
+        when @learn_session.box3.include?(asked_word)
+          @learn_session.box4.push(asked_word)
+          @learn_session.box3 = @learn_session.box3.reject{|w| w.id == asked_word.id}
+      end
+
+      @learn_session.save
+
+      # this if statement checks, if the learn_session is completet (it's completed when all words are in box4)
+      if @learn_session.box0 == nil && @learn_session.box1 == nil && @learn_session.box2 == nil &&
+          @learn_session.box3 == nil
+        # this is temporary, after a learn_session is completed the the application should root the user to a specific
+        # site
+        redirect_to root_path
+      end
+    else    # if the answer is wrong this part fires up
+      flash[:notice] = " \" #{asked_word.name}\"" + t('means') + " \"#{asked_word.description}\"" +
+          t('and_not') + " \"#{user_answer.description}\""
+    end
 
     # this if else statement looks, that only valid valus are used, if it gets bigger than the lenght of the words array
     # it starts again at the beginning. The index needs to be changed bevor the boxes changes because otherwise you
     # will always have the problem to get the correct array.
     if @learn_session.box0 != nil
-      params[:index].to_i <= @learn_session.box0.length ? (params[:index] = params[:index].to_i + 1) :
-          (params[:index].to_i = 0)
+      params[:index_value].to_i >= (@learn_session.box0.size - 1) ? (params[:index_value] = 0) :
+          (params[:index_value] = params[:index_value].to_i + 1)
     elsif @learn_session.box1 != nil
-      params[:index].to_i <= @learn_session.box1.length ? (params[:index] = params[:index].to_i + 1) :
-          (params[:index].to_i = 0)
+      params[:index_value].to_i >= (@learn_session.box1.size -1) ? (params[:index_value] = 0) :
+          params[:index_value].to_i +=  1
     elsif @learn_session.box2 != nil
-      params[:index].to_i <= @learn_session.box2.length ? (params[:index] = params[:index].to_i + 1) :
-          (params[:index].to_i = 0)
+      params[:index_value].to_i >= (@learn_session.box2.size - 1) ? (params[:index_value] = 0) :
+          params[:index_value].to_i += 1
     else @learn_session.box3 != nil
-      params[:index].to_i <= @learn_session.box3.length ? (params[:index] = params[:index].to_i + 1) :
-          (params[:index].to_i = 0)
+      params[:index_value].to_i >=  (@learn_session.box3.size - 1) ? (params[:index_value]= 0) :
+          params[:index_value].to_i += 1
     end
 
-    # this is the actual validation part of this method
-    if @word_to_check.description == user_answer
-      flash[:notice] = t('learnSession_learn_mode_answer_correct')
-      @learn_session.box0.each{|w| puts w.name}
+    @merged_boxes = @learn_session.box0.shuffle + @learn_session.box1.shuffle + @learn_session.box2.shuffle +
+        @learn_session.box3.shuffle
 
-      # this part puts a word into the next box, if the user_answer is correct and delete it out of the old box
-      case
-        when @learn_session.box0.include?(@word_to_check)
-          @learn_session.box1.push(@word_to_check.id)
-          @learn_session.box0 = @learn_session.box0.reject{|w| w.id == @word_to_check.id}
-        when @learn_session.box1.include?(@word_to_check.id)
-          @learn_session.box2 << @word_to_check.id
-          @learn_session.box1 = @learn_session.box1.reject{|w| w.id == @word_to_check.id}
-        when @learn_session.box2.include?(@word_to_check.id)
-          @learn_session.box3 << @word_to_check.id
-          @learn_session.box2 = @learn_session.box2.reject{|w| w.id == @word_to_check.id}
-        when @learn_session.box3.include?(@word_to_check.id)
-          @learn_session.box4 << @word_to_check.id
-          @learn_session.box3 = @learn_session.box3.reject{|w| w.id == @word_to_check.id}
-      end
-
-      @learn_session.save!
-
-      # this if statement checks, if the learn_session is completet (it's completed when all words are in box4)
-      if @learn_session.box0 != nil && @learn_session.box1 != nil && @learn_session.box2 != nil && @learn_session.box3
-        merged_boxes = @learn_session.box0 + @learn_session.box1 + @learn_session.box2 +
-            @learn_session.box3
-
-        new_word_to_check = merged_boxes[params[:index].to_i]
-        redirect_to learn_session_learn_mode_path(@learn_session.id, word: new_word_to_check, index: params[:index])
-      else
-        # this is temporary, after a learn_session is completed the the application should root the user to a specific
-        # site
-        redirect_to root_path
-      end
-
-    else
-      redirect_to learn_session_learn_mode_path(@learn_session.id, index: params[:index])
-      flash[:notice] = " \" #{@word_to_check.name}\"" + t('means') + " \"#{@word_to_check.description}\"" +
-          t('and_not') + " \"#{user_answer}\""
-    end
+    redirect_to learn_session_learn_mode_path(@learn_session.id, index_value: params[:index_value])
   end
 
   private

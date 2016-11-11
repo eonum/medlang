@@ -1,10 +1,8 @@
 %br
-  -if params[:index].equal? nil
-    - @index_vaule = 0
-  -else
-    - @index_vaule = params[:index].to_i
+  -if params[:index_value].equal? nil
+    - params[:index_value] = 0
 
 
 %p#notice
   = notice
-= render @learn_session.words[@index_vaule]
+= render @merged_boxes[params[:index_value].to_i]
