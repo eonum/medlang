@@ -84,7 +84,8 @@ class LearnSessionsController < ApplicationController
     @words = Word.where(language: locale)
     @choices = Array.new
 
-    @merged_boxes = @learn_session.box0 + @learn_session.box1 + @learn_session.box2 + @learn_session.box3
+    @merged_boxes = @learn_session.box0.shuffle + @learn_session.box1.shuffle + @learn_session.box2.shuffle +
+        @learn_session.box3.shuffle
 
     params[:index_value] == nil ? @choices << @merged_boxes[0] : @choices << @merged_boxes[params[:index_value].to_i]
 
@@ -135,8 +136,8 @@ class LearnSessionsController < ApplicationController
       @learn_session.save
 
       # this if statement checks, if the learn_session is completet (it's completed when all words are in box4)
-      if @learn_session.box0 == nil && @learn_session.box1 == nil && @learn_session.box2 == nil &&
-          @learn_session.box3 == nil
+      if @learn_session.box0.empty? && @learn_session.box1.empty? && @learn_session.box2.empty? &&
+          @learn_session.box3.empty?
         # this is temporary, after a learn_session is completed the the application should root the user to a specific
         # site
         redirect_to root_path
