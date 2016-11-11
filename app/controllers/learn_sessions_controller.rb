@@ -29,7 +29,7 @@ class LearnSessionsController < ApplicationController
 
     # select random 10 words from the Words stock. Later the user should be able bey themselves to select the amount of words
     @words = Word.where(language: locale)
-    @random_Words = generate_random_array(@words, 10)
+    @random_Words = generate_random_array(@words, 1 )
     @random_Words.each{|rw| @learn_session.words << rw} # maybe this value can get deleted later, but I keep it for the moment
 
     # all words have to go into the first box. Check the comments in learnSession model for more information
@@ -140,7 +140,8 @@ class LearnSessionsController < ApplicationController
           @learn_session.box3.empty?
         # this is temporary, after a learn_session is completed the the application should root the user to a specific
         # site
-        redirect_to root_path
+        flash[:notice] = t('learnSession_learn_gratulation_for_finishing_session')
+        return redirect_to root_path
       end
     else    # if the answer is wrong this part fires up
       flash[:notice] = " \" #{asked_word.name}\"" + t('means') + " \"#{asked_word.description}\"" +

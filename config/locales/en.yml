@@ -61,12 +61,13 @@ en:
   learnSession_create: "Let's start!"
   learnSession_update: "Learn session updated"
   learnSession_delete: "Learn session deleted"
-  learnSession_start: 'Start learning session'
+  learnSession_start: 'Start Session'
   learnSession_question: 'Question:'
   learnSession_question_text: 'Which of the following statements is true?'
   learnSession_answer: 'Answer:'
   learnSession_learn_mode_answer_correct: 'Your answer was korrect'
   learnSession_learn_mode_answer_incorrect: 'Your answer was wrong:'
+  learnSession_learn_gratulation_for_finishing_session: "Congratulations you finished the learn Session. Click on \"Start session\" to start an other one!"
 
 
   #general stuff

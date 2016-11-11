@@ -68,6 +68,8 @@ de:
   learnSession_answer: 'Antwort:'
   learnSession_learn_mode_answer_correct: 'Deine Antwort ist korrekt'
   learnSession_learn_mode_answer_incorrect: 'Deine Antwort war falsch'
+  learnSession_learn_gratulation_for_finishing_session: "Du hast die Lerneinheit abgeschlosse! Klick auf
+  \"Lerneinheit starten\" um eine neue zu starten!"
   means: ' bedeutet '
   and_not: ' und nicht '
 
