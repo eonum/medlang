@@ -20,13 +20,14 @@
       .panel.panel-default
         .panel-heading
           = w.name
-          .btn.btn-default.btn-xs.pull-right
-            = link_to t('show'), word_path(w), :method => :get
-          .btn.btn-default.btn-xs.pull-right
-            =link_to t('edit'), edit_word_path(w)
-          / todo use ajax to remove word from DB
-          .btn.btn-default.btn-xs.pull-right
-            = link_to t('delete'), w, method: :delete, data: { confirm: t('confirmation_question') }
+          .pull-right
+            .btn.btn-default.btn-xs
+              = link_to content_tag(:i, nil, class: 'fa fa-eye', title: t('show')), word_path(w)
+            .btn.btn-default.btn-xs
+              = link_to content_tag(:i, nil, class: 'fa fa-pencil', title: t('edit')), edit_word_path(w)
+            .btn.btn-default.btn-xs
+              = link_to content_tag(:i, nil, class: 'fa fa-times', title: t('delete')), w, method: :delete, data: {confirm: t('confirmation_question')}
+
         .panel-body
           = w.description
     .center-block
