@@ -63,6 +63,9 @@ de:
   learnSession_update: "Wurde aktuallisiert"
   learnSession_delete: "Learn Session wurde gelöscht"
   learnSession_start: 'Lerneinheit starten'
+  learnSession_new_heading: "Erstell dir deine eigene Lerneinheit"
+  learnSession_new_number_of_words: "Wie viele Wörter willst du in deiner Lerneinheit?"
+  learnSession_new_number_of_boxes: "Wie viele Karteikasten willst du in deiner Lerneinheit?"
   learnSession_question: 'Frage:'
   learnSession_question_text: 'Welche der folgenden Aussagen trifft zu?'
   learnSession_answer: 'Antwort:'

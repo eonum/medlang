@@ -25,4 +25,7 @@ class LearnSession
 
   field :completed, type: Boolean, default: false
 
+  attr_accessor :number_of_words
+  attr_accessor :number_of_boxes
+
 end

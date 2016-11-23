@@ -62,6 +62,9 @@ en:
   learnSession_update: "Learn session updated"
   learnSession_delete: "Learn session deleted"
   learnSession_start: 'Start Session'
+  learnSession_new_heading: "Create your own special learn session"
+  learnSession_new_number_of_words: "How many words do you want in your learn session?"
+  learnSession_new_number_of_boxes: "How many boxes do you want?"
   learnSession_question: 'Question:'
   learnSession_question_text: 'Which of the following statements is true?'
   learnSession_answer: 'Answer:'

@@ -29,5 +29,5 @@
   .col-md-12.text-center
     .btn.btn-primary
       %h1
-        = link_to t('learnSession_start'), learn_sessions_path, method: :post
-        = link_to content_tag(:i, nil, class: 'fa fa-play-circle', title: t('learnSession_start')), learn_sessions_path, method: :post
+        = link_to t('learnSession_start'), new_learn_session_path
+        = link_to content_tag(:i, nil, class: 'fa fa-play-circle', title: t('learnSession_start')), learn_sessions_path

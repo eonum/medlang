@@ -26,10 +26,12 @@ class LearnSessionsController < ApplicationController
   # POST /learn_sessions.json
   def create
     @learn_session = LearnSession.new
+    @number_of_words = params[:learn_session][:number_of_words].to_i
+    @number_of_boxes = params[:learn_session][:number_of_boxes].to_i
 
     # select random 10 words from the Words stock. Later the user should be able bey themselves to select the amount of words
     @words = Word.where(language: locale)
-    @random_Words = generate_random_array(@words, 10 )
+    @random_Words = generate_random_array(@words, @number_of_words )
     @random_Words.each{|rw| @learn_session.words << rw} # maybe this value can get deleted later, but I keep it for the moment
 
     # all words have to go into the first box. Check the comments in learnSession model for more information

@@ -1,5 +1,12 @@
-%h1 New learn_session
+%h1
+  = t('learnSession_new_heading')
 
-= render 'form'
-
-= link_to 'Back', learn_sessions_path
+= form_for @learn_session do |f|
+  .form-group
+    = f.label t('learnSession_new_number_of_words')
+    = f.number_field(:number_of_words, min: 1, max: 100, class: 'form-control')
+    %br
+    = f.label t('learnSession_new_number_of_boxes')
+    = f.number_field(:number_of_boxes, min: 1, max: 10, class: 'form-control')
+    %br
+      = f.button fa_icon("fa-play-circle", text: t('learnSession_start')), class: "btn-block"
