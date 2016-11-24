@@ -29,16 +29,23 @@ class LearnSessionsController < ApplicationController
     @number_of_words = params[:learn_session][:number_of_words].to_i
     @number_of_boxes = params[:learn_session][:number_of_boxes].to_i
 
+    @number_of_boxes.times do |i|
+      @learn_session.boxes[i] = []
+      puts "#########################################"
+      puts @learn_session.boxes[i].is_a?(Array)
+    end
+
     # select random 10 words from the Words stock. Later the user should be able bey themselves to select the amount of words
     @words = Word.where(language: locale)
     @random_Words = generate_random_array(@words, @number_of_words )
     @random_Words.each{|rw| @learn_session.words << rw} # maybe this value can get deleted later, but I keep it for the moment
 
     # all words have to go into the first box. Check the comments in learnSession model for more information
-    @random_Words.each{|rw| @learn_session.box0 << rw}
+    @random_Words.each{|rw| @learn_session.boxes[0] << {id: rw.id, description: rw.description}}
+
 
     # shuffle is needed because otherwise you will always get the alphabetical oder
-    @learn_session.box0 = @learn_session.box0.shuffle
+    @learn_session.boxes[0] = @learn_session.boxes[0].shuffle
 
     #for later, when the usermanagement works
     #@learn_session.user = current_user

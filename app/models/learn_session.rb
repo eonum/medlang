@@ -5,17 +5,23 @@ class LearnSession
   include Mongoid::Document
   include Mongoid::Timestamps::Created
   include Mongoid::Timestamps::Updated
+  include Mongoid::Attributes::Dynamic
 
   has_one :user
   has_and_belongs_to_many :words, class_name: "Word", inverse_of: nil
+  field :boxes, type: Array, default: []
+
+
+=begin
   has_and_belongs_to_many :box0,class_name: "Word", inverse_of: nil
   has_and_belongs_to_many :box1,class_name: "Word", inverse_of: nil
   has_and_belongs_to_many :box2,class_name: "Word", inverse_of: nil
   has_and_belongs_to_many :box3,class_name: "Word", inverse_of: nil
   has_and_belongs_to_many :box4,class_name: "Word", inverse_of: nil
+=end
 
-  # this array contains four choices (to answer a question) for each word from words. One of them is the correct the other 3
-  # are wrong
+  # this array contains four choices (to answer a question) for each word from words. One of them is the correct the
+  # other 3 are wrong
 
   # the idea behind the boxes is the following:
   # first all words go into the first box
