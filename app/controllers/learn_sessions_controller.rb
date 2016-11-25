@@ -30,9 +30,7 @@ class LearnSessionsController < ApplicationController
     @number_of_boxes = params[:learn_session][:number_of_boxes].to_i
 
     @number_of_boxes.times do |i|
-      @learn_session.boxes[i] = []
-      puts "#########################################"
-      puts @learn_session.boxes[i].is_a?(Array)
+      @learn_session.boxes[i] = Array.new
     end
 
     # select random 10 words from the Words stock. Later the user should be able bey themselves to select the amount of words
@@ -41,7 +39,7 @@ class LearnSessionsController < ApplicationController
     @random_Words.each{|rw| @learn_session.words << rw} # maybe this value can get deleted later, but I keep it for the moment
 
     # all words have to go into the first box. Check the comments in learnSession model for more information
-    @random_Words.each{|rw| @learn_session.boxes[0] << {id: rw.id, description: rw.description}}
+    @random_Words.each{|rw| @learn_session.boxes[0] << [rw.id, rw.name, rw.description]}
 
 
     # shuffle is needed because otherwise you will always get the alphabetical oder
@@ -91,23 +89,29 @@ class LearnSessionsController < ApplicationController
 
     # filling up the 2-D array choice
     @words = Word.where(language: locale)
-    @choices = Array.new
+    @choices = []
+    @merged_boxes = []
 
-    @merged_boxes = @learn_session.box0.shuffle + @learn_session.box1.shuffle + @learn_session.box2.shuffle +
-        @learn_session.box3.shuffle
+    @learn_session.boxes.each do |box|
+      box.each do |b|
+        @merged_boxes << b
+      end
+      @merged_boxes.shuffle
+    end
 
-    params[:index_value] == nil ? @choices << @merged_boxes[0] : @choices << @merged_boxes[params[:index_value].to_i]
+    params[:index_value] == nil ? @choices << @merged_boxes[0][2] : @choices << @merged_boxes[params[:index_value].to_i][2]
 
     random_choice = generate_random_array(@words, 4)
     random_choice[0..2].each do |rc|
         #this if else statement is to make sure the correct answer don't show up twice
-      if rc.equal?(@choices[0])
-        @choices << rc[3]
+      if rc.description.equal?(@choices[0])
+        @choices << rc[3].description
       else
-        @choices << rc
+        @choices << rc.description
       end
     end
-      # shuffle the arry because otherwise the correct answer will always at the first object in a array
+
+    # shuffle the arry because otherwise the correct answer will always at the first object in a array
     @choices.shuffle!
 
     respond_to do |format|
@@ -118,14 +122,27 @@ class LearnSessionsController < ApplicationController
 
   def check_answer
     @learn_session = LearnSession.find(params[:learn_session_id])
-    @merged_boxes = @learn_session.box0 + @learn_session.box1 + @learn_session.box2 + @learn_session.box3
-    user_answer = Word.find_by(id: params[:user_answer])
-    asked_word = Word.find_by(id: params[:asked_word])
+    asked_word = Word.find_by(description: params[:asked_word])
+    user_answer = Word.find_by(description: params[:user_answer])
+
+
 
     # this is the actual validation part of this method
-    if asked_word.description == user_answer.description
-      flash[:notice] = t('learnSession_learn_mode_answer_correct')
+    if asked_word == user_answer
+      catch :exit_nested_loop do
+        @learn_session.boxes.each do |box|
+          box.each do |b|
+            if b[2].include?(asked_word.description)
+              index = @learn_session.boxes.index(box)
+              @learn_session.boxes[index + 1].push [asked_word.id, asked_word.name, asked_word.description]
+              box.delete_if { |w| w[0] == asked_word.id }
+              throw :exit_nested_loop
+            end
+          end
+        end
+      end
 
+=begin
       # this part puts a word into the next box, if the user_answer is correct and delete it out of the old box
       case
         when @learn_session.box0.include?(asked_word)
@@ -141,12 +158,14 @@ class LearnSessionsController < ApplicationController
           @learn_session.box4.push(asked_word)
           @learn_session.box3 = @learn_session.box3.reject{|w| w.id == asked_word.id}
       end
+=end
 
       @learn_session.save
 
+      flash[:notice] = t('learnSession_learn_mode_answer_correct')
+
       # this if statement checks, if the learn_session is completet (it's completed when all words are in box4)
-      if @learn_session.box0.empty? && @learn_session.box1.empty? && @learn_session.box2.empty? &&
-          @learn_session.box3.empty?
+      if @learn_session.boxes.last.size == @learn_session.words.size
         # this is temporary, after a learn_session is completed the the application should root the user to a specific
         # site
         flash[:notice] = t('learnSession_learn_gratulation_for_finishing_session')
@@ -160,22 +179,25 @@ class LearnSessionsController < ApplicationController
     # this if else statement looks, that only valid valus are used, if it gets bigger than the lenght of the words array
     # it starts again at the beginning. The index needs to be changed bevor the boxes changes because otherwise you
     # will always have the problem to get the correct array.
-    if @learn_session.box0 != nil
-      params[:index_value].to_i >= (@learn_session.box0.size - 1) ? (params[:index_value] = 0) :
-          (params[:index_value] = params[:index_value].to_i + 1)
-    elsif @learn_session.box1 != nil
-      params[:index_value].to_i >= (@learn_session.box1.size -1) ? (params[:index_value] = 0) :
-          params[:index_value].to_i +=  1
-    elsif @learn_session.box2 != nil
-      params[:index_value].to_i >= (@learn_session.box2.size - 1) ? (params[:index_value] = 0) :
-          params[:index_value].to_i += 1
-    else @learn_session.box3 != nil
-      params[:index_value].to_i >=  (@learn_session.box3.size - 1) ? (params[:index_value]= 0) :
-          params[:index_value].to_i += 1
+
+    index_max = @learn_session.words.size - 1
+    catch :exit_index_control do
+      @learn_session.boxes.each do |box|
+        if box != nil
+          params[:index_value].to_i >= index_max ? (params[:index_value] = 0) :
+              (params[:index_value] = params[:index_value].to_i + 1)
+          throw :exit_index_control
+        end
+      end
     end
 
-    @merged_boxes = @learn_session.box0.shuffle + @learn_session.box1.shuffle + @learn_session.box2.shuffle +
-        @learn_session.box3.shuffle
+    @merged_boxes = []
+    @learn_session.boxes.each do |box|
+      box.each do |b|
+        @merged_boxes << b
+      end
+      @merged_boxes.shuffle
+    end
 
     redirect_to learn_session_learn_path(@learn_session.id, index_value: params[:index_value])
   end
