@@ -99,7 +99,8 @@ class LearnSessionsController < ApplicationController
       @merged_boxes.shuffle
     end
 
-    params[:index_value] == nil ? @choices << @merged_boxes[0][2] : @choices << @merged_boxes[params[:index_value].to_i][2]
+    params[:index_value] == nil ? @choices << @merged_boxes[0][2] :
+        @choices << @merged_boxes[params[:index_value].to_i][2]
 
     random_choice = generate_random_array(@words, 4)
     random_choice[0..2].each do |rc|
@@ -125,44 +126,26 @@ class LearnSessionsController < ApplicationController
     asked_word = Word.find_by(description: params[:asked_word])
     user_answer = Word.find_by(description: params[:user_answer])
 
-
-
     # this is the actual validation part of this method
     if asked_word == user_answer
+      flash[:notice] = t('learnSession_learn_mode_answer_correct')
+
       catch :exit_nested_loop do
         @learn_session.boxes.each do |box|
           box.each do |b|
             if b[2].include?(asked_word.description)
-              index = @learn_session.boxes.index(box)
-              @learn_session.boxes[index + 1].push [asked_word.id, asked_word.name, asked_word.description]
-              box.delete_if { |w| w[0] == asked_word.id }
-              throw :exit_nested_loop
+              unless @learn_session.boxes.last.include?(b)
+                index = @learn_session.boxes.index(box)
+                @learn_session.boxes[index + 1] << [asked_word.id, asked_word.name, asked_word.description]
+                box.delete_if {|w| w[0] == asked_word.id }
+                throw :exit_nested_loop
+              end
             end
           end
         end
       end
 
-=begin
-      # this part puts a word into the next box, if the user_answer is correct and delete it out of the old box
-      case
-        when @learn_session.box0.include?(asked_word)
-          @learn_session.box1.push(asked_word)
-          @learn_session.box0 = @learn_session.box0.reject{|w| w.id == asked_word.id}
-        when @learn_session.box1.include?(asked_word)
-          @learn_session.box2.push(asked_word)
-          @learn_session.box1 = @learn_session.box1.reject{|w| w.id == asked_word.id}
-        when @learn_session.box2.include?(asked_word)
-          @learn_session.box3.push(asked_word)
-          @learn_session.box2 = @learn_session.box2.reject{|w| w.id == asked_word.id}
-        when @learn_session.box3.include?(asked_word)
-          @learn_session.box4.push(asked_word)
-          @learn_session.box3 = @learn_session.box3.reject{|w| w.id == asked_word.id}
-      end
-=end
-
       @learn_session.save
-
-      flash[:notice] = t('learnSession_learn_mode_answer_correct')
 
       # this if statement checks, if the learn_session is completet (it's completed when all words are in box4)
       if @learn_session.boxes.last.size == @learn_session.words.size
