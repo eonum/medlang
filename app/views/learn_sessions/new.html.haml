@@ -4,9 +4,9 @@
 = form_for @learn_session do |f|
   .form-group
     = f.label t('learnSession_new_number_of_words')
-    = f.number_field(:number_of_words, min: 1, max: 100, class: 'form-control')
+    = f.select :number_of_words, options_for_select((5..100).step(5))
     %br
     = f.label t('learnSession_new_number_of_boxes')
-    = f.number_field(:number_of_boxes, min: 1, max: 10, class: 'form-control')
+    = f.select :number_of_boxes, options_for_select(1..10)
     %br
       = f.button fa_icon("fa-play-circle", text: t('learnSession_start')), class: "btn-block"
