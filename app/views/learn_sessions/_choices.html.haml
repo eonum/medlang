@@ -1,18 +1,14 @@
 .row
   .col-sx-6.col-sm-6.col-md-6.choice-1
     = button_to "#{@choices[0]}", controller: 'learn_sessions', :action => 'check_answer',
-    learn_session_id: @learn_session.id, index_value: params[:index_value], :user_answer => @choices[0],
-    :asked_word => @merged_boxes[params[:index_value].to_i][2]
+    learn_session_id: @learn_session.id, :asked_word => params[:asked_word], :user_answer => @choices[0]
   .col-sx-6.col-sm-6.col-md-6.choice-2
     = button_to "#{@choices[1]}", controller: 'learn_sessions', :action => 'check_answer',
-    learn_session_id: @learn_session.id, index_value: params[:index_value], :user_answer => @choices[1],
-    :asked_word => @merged_boxes[params[:index_value].to_i][2]
+    learn_session_id: @learn_session.id, :asked_word => params[:asked_word], :user_answer => @choices[1]
 .row
   .col-sx-6.col-sm-6.col-md-6.choice-3
     = button_to "#{@choices[2]}", controller: 'learn_sessions', :action => 'check_answer',
-    learn_session_id: @learn_session.id, index_value: params[:index_value], :user_answer => @choices[2],
-    :asked_word => @merged_boxes[params[:index_value].to_i][2]
+    learn_session_id: @learn_session.id, :asked_word => params[:asked_word], :user_answer => @choices[2]
   .col-sx-6.col-sm-6.col-md-6.choice-4
     = button_to "#{@choices[3]}", controller: 'learn_sessions', :action => 'check_answer',
-    learn_session_id: @learn_session.id, index_value: params[:index_value], :user_answer => @choices[3],
-    :asked_word => @merged_boxes[params[:index_value].to_i][2]
+    learn_session_id: @learn_session.id, :asked_word => params[:asked_word], :user_answer => @choices[3]

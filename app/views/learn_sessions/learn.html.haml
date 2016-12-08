@@ -1,7 +1,4 @@
 %br
-  -if params[:index_value].equal? nil
-    - params[:index_value] = 0
-
 .row
   .col-sx-12.col-sm-12.col-md-12
     // this is needed for the learn_session/_choice partial
@@ -9,7 +6,6 @@
       %p#notice
 
       %strong
-        = @merged_boxes[params[:index_value].to_i][1] + ': '
-      =t('learnSession_question')
+        = params[:asked_word][1] + ': '
       =t('learnSession_question_text')
 = render 'learn_sessions/choices'
