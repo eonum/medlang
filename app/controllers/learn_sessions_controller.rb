@@ -127,7 +127,7 @@ class LearnSessionsController < ApplicationController
     end
 
     # this is the actual validation part of this method
-    if asked_word == user_answer
+    if asked_word.description == user_answer.description
       catch :exit_nested_loop do
         @learn_session.boxes.each do |box|
           box.each do |word|
@@ -161,11 +161,10 @@ class LearnSessionsController < ApplicationController
 
     # this if else statement looks, that only valid valus are used, if it gets bigger than the lenght of the words array
     # it starts again at the beginning
-    index_max = @learn_session.words.size - 1
     catch :exit_index_control do
       @learn_session.boxes.each do |box|
-        if box != nil
-          if @index_asked_word >= index_max
+        if box.empty? == false
+          if @index_asked_word >= (box.length - 1)
             params[:asked_word] = box[0]
           else
             params[:asked_word] = box[(@index_asked_word + 1)]
@@ -187,7 +186,7 @@ class LearnSessionsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def learn_session_params
       params[:learn_session]
-      params.require(:learn_session).permit(:user, :completed, :words_ids => [])
+      params.require(:learn_session).permit(:user, :completed, :words_ids => [] )
     end
 
   # take the array arr and picks the no_of_values from it and store it in a new array array_off_random_values
