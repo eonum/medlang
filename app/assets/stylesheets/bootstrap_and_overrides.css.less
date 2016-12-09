@@ -68,16 +68,7 @@ h4 {
 /* Grid system
 -------------------------------------------------- */
 /* this keept the divs at the same size */
-.row {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display:         flex;
-}
-.row > [class*='col-'] {
-  display: flex;
-  flex-direction: column;
-}
+
 /* rounded div corners */
 .rounded-top-left {
   border-radius: 20px 0px 0px 0px;
@@ -309,6 +300,10 @@ table {
   border-bottom-right-radius: 5px;
   padding: 4.5px 10px 10px 10px;
   .choice;
+}
+.choice-small {
+  border-bottom: 1px solid;
+  background-color: red;
 }
 
 /* Category views
