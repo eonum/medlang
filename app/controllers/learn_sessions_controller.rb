@@ -52,7 +52,8 @@ class LearnSessionsController < ApplicationController
 
     respond_to do |format|
       if @learn_session.save
-        format.html { redirect_to learn_session_learn_path(@learn_session.id, asked_word: @learn_session.boxes[0][0]), notice: t('learnSession_create') }
+        format.html { redirect_to learn_session_learn_path(@learn_session.id, asked_word: @learn_session.boxes[0][0]),
+                                  notice: t('learnSession_create') }
         format.json { render :show, status: :created, location: @learn_session }
       else
         format.html { render :new }
@@ -159,12 +160,17 @@ class LearnSessionsController < ApplicationController
           t('and_not') + " \"#{user_answer.description}\""
     end
 
-    # this if else statement looks, that only valid valus are used, if it gets bigger than the lenght of the words array
-    # it starts again at the beginning
+    # this nested loop takes care of iterating trough the all boxes and assigns a new value to params[:asked_word]
+    # there's a catch and throw statement which escapes the loop at the point you have a new value for params[:asked_word]
     catch :exit_index_control do
       @learn_session.boxes.each do |box|
         if box.empty? == false
-          if @index_asked_word >= (box.length - 1)
+          # this elsif take care, that the user dosen't get asked the same word two times in a row if
+          #  possible (it happens, when there is only one word left in the n-1 box)
+          if box.length == 1  && asked_word.id == box[0][0] && @learn_session.boxes.index(box) <
+              (@learn_session.boxes.length - 2) # minus 2 because length start counting at 1 and arrays at 0
+            params[:asked_word] = @learn_session.boxes[@learn_session.boxes.index(box) + 1][0]
+          elsif @index_asked_word >= (box.length - 1)
             params[:asked_word] = box[0]
           else
             params[:asked_word] = box[(@index_asked_word + 1)]
