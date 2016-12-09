@@ -20,5 +20,6 @@
 //= require turboboost
 //= require dynamic_fields
 //= require goto_first_input_form.js
+//= require learn_sessions
 //= require_self
 //= require_
